@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'redcarpet', '~> 3.4.0'
-
+gem 'material_design_lite-sass'
 gem 'faker',     '1.6.6'
 
 # Use ActiveModel has_secure_password

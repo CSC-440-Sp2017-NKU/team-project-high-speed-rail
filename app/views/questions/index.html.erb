@@ -1,29 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Questions</h1>
+<h2 class = "page-heading-title">Questions</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent page-loose-button' %>
 
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.title %></td>
-        <td><%= question.content %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @questions.each do |question| %>
+
+  <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+    <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>-->
+    <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-card__supporting-text">
+          <h4><%= question.title %></h4>
+          <%= question.content %>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+          <%= link_to 'View', question, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
+          <%= link_to 'Edit', edit_question_path(question), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
+          <%= link_to 'Delete', question, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </section>
+  
+<% end %>
 
 <br>
-
-<%= link_to 'New Question', new_question_path %>
+<%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent page-loose-button' %>
