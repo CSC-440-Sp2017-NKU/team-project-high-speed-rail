@@ -19,5 +19,12 @@ end
 questions = Question.order(:created_at).take(6)
 10.times do
   content = Faker::Lorem.sentence(5)
-  questions.each { |question| question.answers.create!(content: content) }
+  questions.each do |question| 
+      answer = question.answers.create!(content: content)
+      for _ in 1..10 do
+          random_boolean = [true, false].sample
+          answer.ratings.create!(is_liked: random_boolean)
+      end
+  end
 end
+

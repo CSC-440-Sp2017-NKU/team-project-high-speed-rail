@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312173819) do
+ActiveRecord::Schema.define(version: 20170312201632) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20170312173819) do
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "answer_id"
+    t.boolean  "is_liked"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_ratings_on_answer_id"
   end
 
 end
