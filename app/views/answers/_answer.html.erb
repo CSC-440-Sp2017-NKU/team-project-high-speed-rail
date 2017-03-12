@@ -1,0 +1,9 @@
+<li id="answer-<%= answer.id %>">
+  <span class="content"><%= answer.content %></span>
+  <div class="ratings">
+    Rating: <span class="rating-count"><%= answer.overall_rating %></span>
+  </div>
+  <span class="timestamp">
+    <small>Posted <%= time_ago_in_words(answer.created_at) %> ago.</small>
+  </span>
+</li>

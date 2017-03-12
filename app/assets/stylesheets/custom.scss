@@ -1,0 +1,81 @@
+// $color-primary: 96, 125, 139;
+$color-primary: 57, 63 ,67;
+// $color-primary-dark: 6, 90, 100;
+$color-primary-dark: 44, 48, 51;
+$color-accent: 255, 199, 44;
+$color-accent-dark: 229, 179, 40;
+$color-primary-contrast: 255,255,255;
+$color-accent-contrast: 66,66,66;
+
+@import "material";
+
+
+.fullwidth{
+    width:100%;
+}
+.mdl-card__title {
+    color: #fff;
+    height:100px;
+    // background: rgb(96, 125, 139);
+    background: rgb(57, 63 ,67);
+}
+.field_with_errors{
+    background:none;
+    display:block;
+}
+.field_with_errors .mdl-textfield__label{
+    color:rgb(255,60,46);
+}
+.mdl-card__supporting-text {
+    width:95%;
+}
+.warning-title{
+    background:#ffabab;
+    color:#333333;
+}
+.warning-title .mdl-card__title{
+    background: rgb(255,60,46);
+}
+.question-section{
+    margin-top: 10px;
+    //margin: 10px 20px 0px 20px;
+}
+.question-section .mdl-card__supporting-text{
+    color: #333333;
+}
+.page-heading-title{
+    margin-left: 20px;
+}
+.page-loose-button{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.main-menu-bar{
+    box-sizing: border-box;
+    background: rgb(57, 63 ,67);
+    color: white;
+    width: 100%;
+    padding: 16px;
+}
+.main-menu-bar h4{
+    display: inline-block;
+    margin: 0px;
+}
+.main-menu-bar #main-menu-lower-left{
+    margin-top: -10px;
+}
+.auto-margin{
+    margin:auto;
+}
+.main-menu-bar a{
+    text-decoration: none;
+}
+.main-menu-bar a:hover{
+    background-color: rgba(0,0,0,0);
+}
+.mdl-menu__item a{
+    color: inherit;
+}
+.mdl-menu__item a:hover{
+    color: inherit;
+}
