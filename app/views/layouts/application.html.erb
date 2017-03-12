@@ -8,6 +8,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="main-menu-bar">
+  <button id="main-menu-lower-left"
+          class="mdl-button mdl-js-button mdl-button--icon">
+    <i class="material-icons">more_vert</i>
+  </button>
+  <h4><a href="/questions">NKUnet</a></h4>
+  
+  <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+      for="main-menu-lower-left">
+    <li class="mdl-menu__item mdl-menu__item--full-bleed-divider"><a href="/questions">Home</a></li>
+    <li class="mdl-menu__item"><a href="/questions/new">Create New Question</a></li>
+  </ul>
+</div>
 
 <%= yield %>
 
