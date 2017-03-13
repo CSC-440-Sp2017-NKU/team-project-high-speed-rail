@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
+
 <h2 class = "page-heading-title">Questions</h2>
+
+
 <%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent page-loose-button' %>
 <% @questions.each do |question| %>
   <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">

@@ -13,6 +13,11 @@ $color-accent-contrast: 66,66,66;
 .fullwidth{
     width:100%;
 }
+
+.mdl-card {
+    min-height: 50px;
+}
+
 .mdl-card__title {
     color: #fff;
     height:100px;

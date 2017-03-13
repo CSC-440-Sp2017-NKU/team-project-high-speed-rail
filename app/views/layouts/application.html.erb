@@ -17,12 +17,14 @@
   
   <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
       for="main-menu-lower-left">
-    <li class="mdl-menu__item mdl-menu__item--full-bleed-divider"><a href="/questions">Home</a></li>
+    <li class="mdl-menu__item mdl-menu__item--full-bleed-divider"><a href="<%=  %>">Home</a></li>
     <li class="mdl-menu__item"><a href="/questions/new">Create New Question</a></li>
   </ul>
 </div>
 
 <%= yield %>
+
+<%= debug(params) if Rails.env.development? %>
 
 </body>
 </html>

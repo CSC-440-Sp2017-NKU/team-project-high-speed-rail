@@ -13,7 +13,7 @@
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
 
-<div class="col-md-8">
+<div class="answer-area">
   <% if @question.answers.any? %>
     <h3>Answers (<%= @question.answers.count %>)</h3>
     <ol class="answers">
@@ -25,5 +25,17 @@
     <h3>No Answers. Be the first to help!</h3>
   
   <% end %>
+  
 </div>
+
+<%= form_for([@question, @question.answers.build]) do |f| %>
+  <%= hidden_field_tag :question_id, @question.id %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Compose a new answer...", rows: "5" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
 

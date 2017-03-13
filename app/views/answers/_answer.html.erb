@@ -6,4 +6,5 @@
   <span class="timestamp">
     <small>Posted <%= time_ago_in_words(answer.created_at) %> ago.</small>
   </span>
+  <%= link_to "Delete Answer", [answer.question, answer], :confirm => "Are you sure?", :method => :delete %>
 </li>
