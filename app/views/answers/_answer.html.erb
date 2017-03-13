@@ -1,10 +1,13 @@
 <li id="answer-<%= answer.id %>">
-  <span class="content"><%= answer.content %></span>
+  <span class="content"><%= parse_markdown answer.content %></span>
   <div class="ratings">
     Rating: <span class="rating-count"><%= answer.overall_rating %></span>
   </div>
   <span class="timestamp">
     <small>Posted <%= time_ago_in_words(answer.created_at) %> ago.</small>
   </span>
+  <%= link_to "Upvote", upvote_question_answer_path(question_id: answer.question.id, id: answer.id), :method => :post %>
+  <%= link_to "Downvote", downvote_question_answer_path(question_id: answer.question.id, id: answer.id), :method => :post %>
+  </br>
   <%= link_to "Delete Answer", [answer.question, answer], :confirm => "Are you sure?", :method => :delete %>
 </li>

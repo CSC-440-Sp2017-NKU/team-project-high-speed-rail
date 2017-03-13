@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
+
   root 'questions#index'
   resources :questions
   
   resources :questions do
-    resources :answers, only: [:create, :update, :destroy]
+    resources :answers, only: [:create, :update, :destroy] do
+      member do
+        post 'upvote' => 'ratings#upvote'
+        post 'downvote' => 'ratings#downvote'
+      end
+      #resources :ratings, only: [:create, :update, :destroy]
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

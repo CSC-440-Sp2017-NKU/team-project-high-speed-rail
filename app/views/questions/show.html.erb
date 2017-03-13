@@ -7,7 +7,7 @@
 
 <p>
   <strong>Content:</strong>
-  <%= @question.content %>
+  <%= parse_markdown @question.content %>
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |

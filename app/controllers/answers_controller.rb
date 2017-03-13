@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+    before_action :set_answer, only: [:update, :destroy]
     
     def create
         @question = Question.find(params[:question_id])
@@ -7,7 +8,6 @@ class AnswersController < ApplicationController
         if @answer.save
             respond_to do |format|
                 format.html { redirect_to @question, notice: 'Answer was successfully added.' }
-                format.js
             end
         else
             respond_to do |format|
@@ -18,17 +18,16 @@ class AnswersController < ApplicationController
     
     def update
         respond_to do |format|
-        if @answer.update(answer_params)
-            format.html { redirect_to @answer.question, notice: 'Answer was successfully updated.' }
-        else
-            format.html { redirect_to @answer.question, notice: 'Answer could not be updated.' }
+            if @answer.update(answer_params)
+                format.html { redirect_to @answer.question, notice: 'Answer was successfully updated.' }
+            else
+                format.html { redirect_to @answer.question, notice: 'Answer could not be updated.' }
+            end
         end
-    end
     end
     
     def destroy
-        @question = Question.find(params[:question_id])
-        @answer = @question.answers.find(params[:id])
+        @question = @answer.question
         @answer.destroy
         respond_to do |format|
             format.html { redirect_to @question, notice: 'Answer was successfully destroyed.' }
@@ -36,6 +35,11 @@ class AnswersController < ApplicationController
     end
     
     private
+    
+        # Use callbacks to share common setup or constraints between actions.
+        def set_answer
+            @answer = Answer.find(params[:id])
+        end
     
         def answer_params
             params.require(:answer).permit(:content)
