@@ -1,24 +1,17 @@
-<div class="section__circle-container mdl-cell mdl-cell--1-col mdl-cell--1-col-phone center-this">
-  <!-- need to make if rating is > 0  print the green circle, else print the red circle -->
-  <div class="its-a-circle im-green"><%= answer.overall_rating %></div>
-</div>
-<div class="section__text answer__text mdl-cell mdl-cell--11-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
+<li id="answer-<%= answer.id %>">
+  <span class="content"><%= parse_markdown answer.content %></span>
+  <div class="ratings">
+    Rating: <span class="rating-count"><%= answer.overall_rating %></span>
+  </div>
+  <span class="timestamp">
     <small>Posted <%= time_ago_in_words(answer.created_at) %> ago.</small>
-    <%= parse_markdown answer.content %>
-</div>
-
-
-
-<!--<li id="answer-<%= answer.id %>">-->
-<!--  <span class="content"><%= parse_markdown answer.content %></span>-->
-<!--  <div class="ratings">-->
-<!--    Rating: <span class="rating-count"><%= answer.overall_rating %></span>-->
-<!--  </div>-->
-<!--  <span class="timestamp">-->
-<!--    <small>Posted <%= time_ago_in_words(answer.created_at) %> ago.</small>-->
-<!--  </span>-->
-<!--  <%= link_to "Upvote", upvote_question_answer_path(question_id: answer.question.id, id: answer.id), :method => :post %>-->
-<!--  <%= link_to "Downvote", downvote_question_answer_path(question_id: answer.question.id, id: answer.id), :method => :post %>-->
-<!--  </br>-->
-<!--  <%= link_to "Delete Answer", [answer.question, answer], :confirm => "Are you sure?", :method => :delete %>-->
-<!--</li>-->
+  </span>
+  <%= link_to upvote_question_answer_path(question_id: answer.question.id, id: answer.id), :method => :post do %>
+    <i class="material-icons">thumb_up</i>
+  <% end %>
+  <%= link_to downvote_question_answer_path(question_id: answer.question.id, id: answer.id), :method => :post do %>
+    <i class="material-icons">thumb_down</i>
+  <% end %>
+  </br>
+  <%= link_to "Delete Answer", [answer.question, answer], :confirm => "Are you sure?", :method => :delete %>
+</li>
