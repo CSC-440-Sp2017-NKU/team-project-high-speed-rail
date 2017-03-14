@@ -9,6 +9,9 @@ $color-accent-contrast: 66,66,66;
 
 @import "material";
 
+body{
+    background:#f1f0d3;
+}
 
 .fullwidth{
     width:100%;
@@ -84,3 +87,58 @@ $color-accent-contrast: 66,66,66;
 .mdl-menu__item a:hover{
     color: inherit;
 }
+
+.our-mdl .mdl-card .mdl-card__supporting-text {
+//   margin: 40px;
+//   flex-grow: 1;
+//   padding: 0;
+//   color: inherit;
+//   width: calc(100% - 80px);
+}
+
+.our-mdl .mdl-layout__content .mdl-layout__tab-panel {
+//     padding: 8px;
+//     padding-top: 48px;
+}
+
+.no-top-margin{
+    margin-top:0px;
+}
+
+.white-background{
+    background:white;
+}
+
+.its-a-circle{
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 42px;
+    color: #ffffff;
+}
+
+.im-green{
+    background: #93c393;
+}
+
+.im-red{
+    background: #da9696;
+}
+
+.center-this{
+    //margin:0 auto;
+}
+
+.our-mdl section.section--center .answer__text:not(:last-child){
+    border-bottom: 1px solid rgba(0,0,0,.13);
+    margin-bottom: 25px;
+    padding-bottom: 9px;
+}
+
+.answer__text{
+    overflow-wrap: break-word;
+}
+
+

@@ -1,32 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @question.title %>
-</p>
 
-<p>
-  <strong>Content:</strong>
-  <%= parse_markdown @question.content %>
-</p>
-
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
-
-<div class="answer-area">
-  <% if @question.answers.any? %>
-    <h3>Answers (<%= @question.answers.count %>)</h3>
-    <ol class="answers">
-      <%= render @answers %>
-    </ol>
-    
-  <% else %>
-  
-    <h3>No Answers. Be the first to help!</h3>
-  
-  <% end %>
-  
+<div class="our-mdl">
+  <div class="mdl-layout__tab-panel">
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>-->
+      <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <div class="mdl-card__supporting-text">
+            <h4><%= @question.title %></h4>
+            <%= @question.content %>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <%= link_to 'Edit', edit_question_path(@question), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
+            <%= link_to 'Delete', @question, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>-->
+      <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <div class="mdl-card__supporting-text">
+          <% if @question.answers.any? %>
+            <!--<%= link_to 'Create New Answer', '#', :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>-->
+            <h4>Answers (<%= @question.answers.count %>)</h4>
+            <!--<ol class="answers">-->
+            <div class=" mdl-grid mdl-grid--no-spacing answer-grid">
+              <%= render @answers %>
+            </div>
+            <!--</ol>-->
+          <% else %>
+            <h4>No Answers. Be the first to help!</h4>
+          <% end %>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <%= link_to 'Create New Answer', '#', :class => 'mdl-button mdl-js-ripple-effect' %>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
+
+
 
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <%= hidden_field_tag :question_id, @question.id %>
