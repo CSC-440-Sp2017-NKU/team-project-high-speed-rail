@@ -161,7 +161,15 @@ body{
 
 .thumbs a:hover{
     text-decoration:none;
-    color: rgb(255, 199, 44);
+    //color: rgb(255, 199, 44);
+}
+
+.thumbs .thumb-down:hover{
+    color: #da9696;;
+}
+
+.thumbs .thumb-up:hover{
+    color: #93c393;
 }
 
 .notice-upvote .mdl-card__supporting-text{
@@ -169,9 +177,17 @@ body{
     color:#ffffff;
 }
 
+.notice-upvote {
+    width: 200px;
+}
+
 .notice-downvote .mdl-card__supporting-text{
     background: #da9696;
     color:#ffffff;
+}
+
+.notice-downvote{
+    width: 200px;
 }
 
 .hidden{
