@@ -1,5 +1,23 @@
-<p id="notice"><%= notice %></p>
-
+<% if notice == "Upvoted Answer" %>
+<section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--3-col-phone notice-upvote">
+  <div class="mdl-card">
+    <div class="mdl-card__supporting-text">
+        <%= notice %>
+        <i class="material-icons float-right dismiss">clear</i>
+    </div>
+  </div>
+</section>
+<% end %>
+<% if notice == "Downvoted Answer" %>
+<section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--4-col-desktop mdl-cell--3-col-tablet mdl-cell--3-col-phone notice-downvote">
+  <div class="mdl-card">
+    <div class="mdl-card__supporting-text">
+        <%= notice %>
+        <i class="material-icons float-right dismiss">clear</i>
+    </div>
+  </div>
+</section>
+<% end %>
 
 <div class="our-mdl">
   <div class="mdl-layout__tab-panel">
@@ -34,23 +52,34 @@
           <% end %>
         </div>
         <div class="mdl-card__actions mdl-card--border">
-          <%= link_to 'Create New Answer', '#', :class => 'mdl-button mdl-js-ripple-effect' %>
+          <span class = "mdl-button new-answer-button">Create New Answer</span>
+          <%= form_for([@question, @question.answers.build]) do |f| %>
+            <%= hidden_field_tag :question_id, @question.id %>
+            <div class="hidden answer-form">
+              <div class="mdl-textfield mdl-js-textfield fullwidth">
+                <label class="mdl-textfield__label" for="answer_content">Compose a new answer...</label>
+                <%= f.text_area :content,  :class => 'mdl-textfield__input', placeholder: "Compose a new answer...", rows: "5" %>
+              </div>
+              <div class="actions">
+                <%= f.submit :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent page-loose-button' %>
+              </div>
+            </div>
+          <% end %>          
         </div>
       </div>
     </section>
   </div>
 </div>
 
-
-
-<%= form_for([@question, @question.answers.build]) do |f| %>
-  <%= hidden_field_tag :question_id, @question.id %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Compose a new answer...", rows: "5" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
+<script>
+  
+  $( ".dismiss" ).click(function() {
+    $(".dismiss").parent().parent().addClass("hidden");
+  });
+  
+  $( ".new-answer-button" ).click(function() {
+    $(".new-answer-button").addClass("hidden");
+    $(".answer-form").addClass("visible").removeClass("hidden")
+  });
+</script>
 

@@ -110,9 +110,9 @@ body{
 }
 
 .its-a-circle{
-    width: 42px;
-    height: 42px;
-    border-radius: 21px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
     text-align: center;
     vertical-align: middle;
     line-height: 42px;
@@ -120,10 +120,12 @@ body{
 }
 
 .im-green{
+    margin-top: -8px;
     background: #93c393;
 }
 
 .im-red{
+    margin-top: -8px;
     background: #da9696;
 }
 
@@ -142,3 +144,59 @@ body{
 }
 
 
+.thumb{
+    font-size: 20px;
+}
+
+.thumbs{
+    margin: auto;
+    margin-top: 5px;
+    margin-left: -2px;
+}
+
+.thumbs a{
+    text-decoration:none;
+    color: #848484;
+}
+
+.thumbs a:hover{
+    text-decoration:none;
+    color: rgb(255, 199, 44);
+}
+
+.notice-upvote .mdl-card__supporting-text{
+    background: #93c393;
+    color:#ffffff;
+}
+
+.notice-downvote .mdl-card__supporting-text{
+    background: #da9696;
+    color:#ffffff;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+.float-right{
+    float:right;
+}
+
+.dismiss{
+    font-size: 26px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+.dismiss:hover{
+    font-size: 26px;
+    color: rgb(66,66,66);
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+}
