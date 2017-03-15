@@ -7,7 +7,7 @@ class RatingsController < ApplicationController
     
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to @answer.question, notice: 'Upvoted answer.' }
+        format.html { redirect_to @answer.question, notice: 'Upvoted Answer' }
       else
         format.html { redirect_to @answer.question, notice: 'Could not upvote the answer.' }
       end
@@ -20,7 +20,7 @@ class RatingsController < ApplicationController
     
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to @answer.question, notice: 'Downvoted answer.' }
+        format.html { redirect_to @answer.question, notice: 'Downvoted Answer' }
       else
         format.html { redirect_to @answer.question, notice: 'Could not downvote the answer.' }
       end
