@@ -4,7 +4,7 @@
   <% if answer.overall_rating > -1 %>
     <div class="its-a-circle im-green"><%= answer.overall_rating %></div>
   <% else %>
-      <div class="its-a-circle im-red"><%= answer.overall_rating %></div>
+    <div class="its-a-circle im-red"><%= answer.overall_rating %></div>
   <% end %>
   <div class = "thumbs">
     <%= link_to upvote_question_answer_path(question_id: answer.question.id, id: answer.id), :class => "thumb-up",:method => :post do %>
