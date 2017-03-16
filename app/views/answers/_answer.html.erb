@@ -17,7 +17,7 @@
 </div>
 <div class="section__text answer__text mdl-cell mdl-cell--11-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
     <small>Posted <%= time_ago_in_words(answer.created_at) %> ago.</small>
-    <%= parse_markdown answer.content %>
+    <div class="markdown-body"><%= parse_markdown answer.content %></div>
 </div>
 
 
