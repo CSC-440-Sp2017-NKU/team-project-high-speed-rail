@@ -55,7 +55,7 @@
           <span class = "mdl-button new-answer-button">Create New Answer</span>
           <%= form_for([@question, @question.answers.build]) do |f| %>
             <%= hidden_field_tag :question_id, @question.id %>
-            <div class="hidden answer-form">
+            <div class="answer-form"> <!-- hidden -->
               <div class="mdl-textfield mdl-js-textfield fullwidth">
                 <label class="mdl-textfield__label" for="answer_content">Compose a new answer...</label>
                 <%= f.text_area :content,  :class => 'mdl-textfield__input', placeholder: "Compose a new answer...", rows: "5" %>
@@ -78,8 +78,12 @@
   });
   
   $( ".new-answer-button" ).click(function() {
-    $(".new-answer-button").addClass("hidden");
-    $(".answer-form").addClass("visible").removeClass("hidden")
+    
+    $('.new-answer-button').hide();
+    $('.answer-form').show(250);
+    
+    // $(".new-answer-button").addClass("hidden");
+    // $(".answer-form").addClass("visible").removeClass("hidden")
   });
 </script>
 

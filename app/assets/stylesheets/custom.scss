@@ -117,6 +117,7 @@ body{
     vertical-align: middle;
     line-height: 42px;
     color: #ffffff;
+    margin: auto;
 }
 
 .im-green{
@@ -194,7 +195,7 @@ body{
 }
 
 .hidden{
-    visibility: hidden;
+    display: none;
 }
 
 .visible{
@@ -242,4 +243,40 @@ body{
 .question-badge{
     margin-left: 11px;
     margin-top: 5px;
+}
+
+.answer-form {
+    display: none;
+}
+
+.page-content {
+}
+
+.github-img {
+    background-image: url(github_white_24.svg);
+}
+
+.social-btn {
+    display: block;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.mini-footer-social-btn {
+    background-color: transparent;
+    margin: 0 16px;
+    width: 24px;
+    height: 24px;
+}
+
+.our-footer {
+    max-height: 100px;
+}
+
+.section__circle-container {
+    text-align: center;
 }

@@ -1,4 +1,4 @@
-<% if notice != nil %>
+<% if notice %>
 <section class="mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section notice-upvote">
   <div class="mdl-card">
     <div class="mdl-card__supporting-text">
@@ -9,17 +9,15 @@
 </section>
 <% end %>
 
-<h2 class = "page-heading-title">Questions</h2>
-
-
-<%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent page-loose-button' %>
 <div class="our-mdl">
   <div class="qa-panel">
     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
       <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>-->
       <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">All Questions</h2>
+        </div>
         <div class="mdl-card__supporting-text">
-          <h4>All Questions</h4>
           <div class=" mdl-grid mdl-grid--no-spacing answer-grid">
             <% @questions.each do |question| %>
               <div class="section__circle-container mdl-cell mdl-cell--1-col mdl-cell--2-col-phone center-this">
@@ -27,7 +25,7 @@
                 <i class="material-icons mdl-badge mdl-badge--overlap mdl-list__item-icon question-badge" data-badge="<%= question.answers.count %>">question_answer</i>
                   <div class = "admin-buttons">
                     <%= link_to edit_question_path(question) ,:method => :get do %>
-                      <i class="material-icons question-button">mode_edit</i>
+                      <i class="material-icons question-button">edit</i>
                     <% end %>
                     <%= link_to question, method: :delete, data: { confirm: 'Are you sure?' } do %>
                       <i class="material-icons question-button">delete</i>
@@ -39,7 +37,7 @@
                 <small>Posted <%= time_ago_in_words(question.created_at) %> ago.</small>
                 <% if question.answers.any? %>
                   <br>
-                  <small>Last answer given <%= time_ago_in_words question.answers.last.created_at %> ago.</small>                  
+                  <small>Last answer given <%= time_ago_in_words question.answers.last.created_at %> ago.</small>
                   <% else %>
                   <br>
                   <small>No answers yet.</small>
