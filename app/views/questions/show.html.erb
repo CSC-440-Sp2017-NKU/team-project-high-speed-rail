@@ -56,7 +56,7 @@
           <%= form_for([@question, @question.answers.build]) do |f| %>
             <%= hidden_field_tag :question_id, @question.id %>
             <div class="answer-form"> <!-- hidden -->
-              <div class="mdl-textfield mdl-js-textfield fullwidth">
+              <div class="mdl-textfield mdl-js-textfield answer-textfield">
                 <label class="mdl-textfield__label" for="answer_content">Compose a new answer...</label>
                 <%= f.text_area :content,  :class => 'mdl-textfield__input', placeholder: "Compose a new answer...", rows: "5" %>
               </div>
