@@ -280,3 +280,16 @@ body{
 .section__circle-container {
     text-align: center;
 }
+
+.question-title{
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.question-title a{
+    text-decoration: none;
+    color:#333333;
+}
+.question-title a:hover{
+    text-decoration: underline;
+}
