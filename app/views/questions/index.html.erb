@@ -33,7 +33,7 @@
                   </div>
               </div>
               <div class="section__text answer__text mdl-cell mdl-cell--11-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
-                <div class="markdown-body"><a href="<%= question_path question %>"><%= question.title %></a></div>
+                <div class="question-title"><a href="<%= question_path question %>"><%= question.title %></a></div>
                 <small>Posted <%= time_ago_in_words(question.created_at) %> ago.</small>
                 <% if question.answers.any? %>
                   <br>
@@ -46,11 +46,13 @@
             <% end %>
           </div>
         </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+        </div>
       </div>
     </section>
   </div>
 </div>
 <br>
-<%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent page-loose-button' %>
 
 <!--new style starts here-->

@@ -281,6 +281,18 @@ body{
     text-align: center;
 }
 
+.question-title{
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.question-title a{
+    text-decoration: none;
+    color:#333333;
+}
+.question-title a:hover{
+    text-decoration: underline;
+}
 .answer-textfield {
     margin-left: 20px;
     margin-right: 20px;
