@@ -11,4 +11,19 @@ module ApplicationHelper
                                                  highlight:         true)
     markdown.render(content).html_safe
   end
+  
+  # Returns the full title on a per-page basis.
+  def full_title(page_title = '')
+    base_title = "NKUNet"
+    if page_title.empty?
+      base_title
+    else
+      page_title + " | " + base_title
+    end
+  end
+  
+  def positive_rating(rating)
+    rating >= 0
+  end
+  
 end
