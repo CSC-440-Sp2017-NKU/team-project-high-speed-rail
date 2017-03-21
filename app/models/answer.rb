@@ -1,6 +1,6 @@
 class Answer < ApplicationRecord
   belongs_to :question
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   
   validates :content, presence: true
   default_scope -> { order(created_at: :asc) }
