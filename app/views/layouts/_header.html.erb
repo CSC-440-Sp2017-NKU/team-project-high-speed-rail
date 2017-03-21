@@ -1,0 +1,32 @@
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title"><a href="<%= root_path %>">NKUNet</a></span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+      </nav>
+      <form action="#" class="header-search">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" id="sample6">
+            <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">NKUNet</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="<%= root_path %>">Home</a>
+      <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+      <a class="mdl-navigation__link" href="#">About</a>
+      <a class="mdl-navigation__link" href="#">Placeholder</a>
+    </nav>
+  </div>

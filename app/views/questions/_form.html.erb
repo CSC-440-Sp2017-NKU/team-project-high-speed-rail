@@ -1,33 +1,15 @@
-
 <%= form_for(question) do |f| %>
   <div class="mdl-card__supporting-text">
-    <% if question.errors.any? %>
-      <div class="mdl-grid">
-        <!--id="error_explanation" or maybe it was a class... idk-->
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-        <div class="mdl-cell mdl-cell--8-col mdl-shadow--4dp warning-title">
-          <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">You must correct <%= pluralize(question.errors.count, "field") %> before you can create your question:</h2>
-          </div>
-          <ul>
-          <% question.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
-      </div>
-    <% end %>
-  
+    <%= render 'shared/error_messages', object: f.object %>
+    
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullwidth">
-      <div>
-      <%= f.label :title, :class => 'mdl-textfield__label'%>
-      <%= f.text_field :title, :class => 'mdl-textfield__input'%>
-      </div>
+        <%= f.label :title, :class => 'mdl-textfield__label'%>
+        <%= f.text_field :title, :class => 'mdl-textfield__input'%>
     </div>
   
     <div class="mdl-textfield mdl-js-textfield fullwidth">
       <%= f.label :content, :class => 'mdl-textfield__label' %>
-      <%= f.text_area :content, :class => 'mdl-textfield__input', placeholder: "Compose a question...", rows: "19" %>
+      <%= f.text_area :content, :class => 'mdl-textfield__input', placeholder: "Compose a question...", rows: "15" %>
     </div>
   </div>
   

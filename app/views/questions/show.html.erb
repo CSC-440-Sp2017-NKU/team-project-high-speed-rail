@@ -20,54 +20,41 @@
 <% end %>
 
 <div class="our-mdl">
-  <div class="qa-panel">
-    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-      <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>-->
-      <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-        <div class="mdl-card__supporting-text">
-            <h4><%= @question.title %></h4>
-            <div class="markdown-body"><%= parse_markdown @question.content %></div>
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-            <%= link_to 'Edit', edit_question_path(@question), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
-            <%= link_to 'Delete', @question, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
+  
+  <!-- Begin Question Section -->
+  <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+    <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-card__supporting-text">
+          <h4><%= @question.title %></h4>
+          <div class="markdown-body"><%= parse_markdown @question.content %></div>
       </div>
-    </section>
-    <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-      <!--<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>-->
-      <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-        <div class="mdl-card__supporting-text">
-          <% if @question.answers.any? %>
-            <!--<%= link_to 'Create New Answer', '#', :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>-->
-            <h4>Answers (<%= @question.answers.count %>)</h4>
-            <!--<ol class="answers">-->
-            <div class=" mdl-grid mdl-grid--no-spacing answer-grid">
-              <%= render @answers %>
-            </div>
-            <!--</ol>-->
-          <% else %>
-            <h4>No Answers. Be the first to help!</h4>
-          <% end %>
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-          <span class = "mdl-button new-answer-button">Create New Answer</span>
-          <%= form_for([@question, @question.answers.build]) do |f| %>
-            <%= hidden_field_tag :question_id, @question.id %>
-            <div class="answer-form"> <!-- hidden -->
-              <div class="mdl-textfield mdl-js-textfield answer-textfield">
-                <label class="mdl-textfield__label" for="answer_content">Compose a new answer...</label>
-                <%= f.text_area :content,  :class => 'mdl-textfield__input', placeholder: "Compose a new answer...", rows: "5" %>
-              </div>
-              <div class="actions">
-                <%= f.submit :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent page-loose-button' %>
-              </div>
-            </div>
-          <% end %>          
-        </div>
+      <div class="mdl-card__actions mdl-card--border">
+          <%= link_to 'Edit', edit_question_path(@question), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
+          <%= link_to 'Delete', @question, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+  
+  <!-- Begin Answers Section -->
+  <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+    <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+      <div class="mdl-card__supporting-text">
+        <% if @question.answers.any? %>
+          <h4>Answers (<%= @question.answers.count %>)</h4>
+          <div class=" mdl-grid mdl-grid--no-spacing answer-grid">
+            <%= render @answers %>
+          </div>
+        <% else %>
+          <h4>No Answers. Be the first to help!</h4>
+        <% end %>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <span class = "mdl-button new-answer-button">Create New Answer</span>
+        <%= render 'answers/form' %>
+      </div>
+    </div>
+  </section>
+  
 </div>
 
 <script>
