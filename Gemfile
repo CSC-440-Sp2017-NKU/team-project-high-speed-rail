@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '5.0.1'
 # Use Puma as webserver
 gem 'puma', '3.4.0'
+# Bcrypt for password hashing
+gem 'bcrypt', '~> 3.1.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -13,6 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+
+# Pundit for user permissions
+gem 'pundit'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -26,9 +31,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'redcarpet', '~> 3.4.0'
 gem 'material_design_lite-sass'
 gem 'faker',     '1.6.6'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

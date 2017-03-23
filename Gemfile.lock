@@ -42,6 +42,7 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.7)
       execjs
+    bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
@@ -122,6 +123,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     puma (3.4.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -211,6 +214,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   byebug
   coffee-rails (~> 4.1.0)
   faker (= 1.6.6)
@@ -223,6 +227,7 @@ DEPENDENCIES
   minitest-reporters (= 1.1.9)
   pg
   puma (= 3.4.0)
+  pundit
   rails (= 5.0.1)
   rails-controller-testing (= 0.1.1)
   rails_12factor

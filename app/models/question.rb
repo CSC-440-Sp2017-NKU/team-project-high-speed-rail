@@ -1,6 +1,7 @@
 class Question < ApplicationRecord
     
     has_many :answers, dependent: :destroy
+    belongs_to :user
     
     default_scope -> { order(created_at: :desc) }
     
