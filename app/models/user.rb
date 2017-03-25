@@ -10,9 +10,16 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   
+  has_many :user_permissions
+  has_many :permissions, through: :user_permissions
+  
   has_many :questions
   has_many :answers
   has_many :ratings
+  
+  def permission?(permission)
+    permissions.any? { |p| p.name.underscore.to_sym == permission }
+  end
   
   # Returns the hash digest of the given string.
   def User.digest(string)
