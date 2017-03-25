@@ -21,12 +21,16 @@
       </form>
     </div>
   </header>
-  <div class="mdl-layout__drawer">
+  <div class="mdl-layout__drawer drawer">
     <span class="mdl-layout-title">NKUNet</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="<%= root_path %>">Home</a>
       <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
-      <a class="mdl-navigation__link" href="#">About</a>
-      <a class="mdl-navigation__link" href="#">Placeholder</a>
+      <div class="drawer-separator"></div>
+      <% if logged_in? %>
+        <%= link_to "Logout", logout_path, :method => :delete, :class => "mdl-navigation__link" %>
+      <% else %>
+        <%= link_to "Login", login_path, :class => "mdl-navigation__link" %>
+      <% end %>
     </nav>
   </div>

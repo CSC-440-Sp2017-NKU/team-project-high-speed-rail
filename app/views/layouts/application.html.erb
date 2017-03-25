@@ -14,9 +14,9 @@
   <main class="mdl-layout__content">
     
     <div class="page-content">
-      <%# flash.each do |message_type, message| %>
-        <!--<div class="alert-<%#= message_type %>"><%#= message %></div>-->
-      <%# end %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert-<%= message_type %>"><%= message %></div>
+      <% end %>
       
       <%= yield %>
       

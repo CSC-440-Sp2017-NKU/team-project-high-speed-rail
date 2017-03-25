@@ -4,6 +4,7 @@ class RatingsController < ApplicationController
   
   def upvote
     @vote = @answer.ratings.build(is_liked: true)
+    @vote.user = current_user
     
     respond_to do |format|
       if @vote.save
@@ -17,6 +18,7 @@ class RatingsController < ApplicationController
   
   def downvote
     @vote = @answer.ratings.build(is_liked: false)
+    @vote.user = current_user
     
     respond_to do |format|
       if @vote.save

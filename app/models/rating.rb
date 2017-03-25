@@ -2,6 +2,7 @@ class Rating < ApplicationRecord
   belongs_to :answer
   belongs_to :user
   
+  validates :user, presence: true
   validates_uniqueness_of :user_id, scope: [:answer_id]
   
   scope :upvotes, -> { where(is_liked: true) }

@@ -310,3 +310,16 @@ body{
     box-shadow: inset 0 1px 1px rgba(0,0,0,.05);    
     padding: 5px;
 }
+
+.drawer-separator {
+    height: 1px;
+    background-color: #dcdcdc;
+    margin: 8px 0;
+}
+
+.drawer .mdl-layout-title {
+    position: relative;
+    background: rgb(57, 63 ,67);
+    color: rgb(255, 199, 44);
+    height: 160px;
+}

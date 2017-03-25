@@ -7,5 +7,6 @@ class Question < ApplicationRecord
     
     validates :title, presence: true, length: {maximum: 140}
     validates :content, presence: true
+    validates :user, presence: true
     
 end

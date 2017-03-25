@@ -5,6 +5,7 @@ class Answer < ApplicationRecord
   has_many :ratings, dependent: :destroy
   
   validates :content, presence: true
+  validates :user, presence: true
   default_scope -> { order(created_at: :asc) }
   
   def upvote_count
