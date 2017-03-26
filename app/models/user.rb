@@ -17,6 +17,46 @@ class User < ApplicationRecord
   has_many :answers
   has_many :ratings
   
+  def User.new_student(data)
+    user = User.new(data)
+    
+    user.permissions << Permission.find_permission(:post)
+    user.permissions << Permission.find_permission(:student)
+    
+    user
+  end
+  
+  def User.new_faculty(data)
+    user = User.new(data)
+    
+    user.permissions << Permission.find_permission(:post)
+    user.permissions << Permission.find_permission(:topic)
+    user.permissions << Permission.find_permission(:faculty)
+    
+    user
+  end
+  
+  def User.new_registrar(data)
+    user = User.new(data)
+    
+    user.permissions << Permission.find_permission(:user_manage)
+    user.permissions << Permission.find_permission(:course_manage)
+    
+    user
+  end
+  
+  def User.new_admin(data)
+    user = User.new(data)
+    user.permissions << Permission.find_permission(:post)
+    user.permissions << Permission.find_permission(:topic)
+    user.permissions << Permission.find_permission(:post_manage)
+    user.permissions << Permission.find_permission(:topic_manage)
+    user.permissions << Permission.find_permission(:course_manage)
+    user.permissions << Permission.find_permission(:user_manage)
+    
+    user
+  end
+  
   def permission?(permission)
     permissions.any? { |p| p.name.underscore.to_sym == permission }
   end
