@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   
+  acts_as_paranoid
+  
   has_many :user_permissions
   has_many :permissions, through: :user_permissions
   
