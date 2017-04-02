@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327033916) do
+ActiveRecord::Schema.define(version: 20170402002344) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20170327033916) do
     t.index ["question_id", "created_at"], name: "index_answers_on_question_id_and_created_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "code"
+    t.string   "title"
+    t.string   "days"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -35,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170327033916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.integer  "topic_id"
+    t.index ["topic_id"], name: "index_questions_on_topic_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -46,6 +58,14 @@ ActiveRecord::Schema.define(version: 20170327033916) do
     t.integer  "user_id"
     t.index ["answer_id"], name: "index_ratings_on_answer_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_topics_on_deleted_at"
   end
 
   create_table "user_permissions", force: :cascade do |t|
