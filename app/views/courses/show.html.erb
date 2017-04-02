@@ -1,2 +1,42 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<div class="our-mdl">
+  <h3><%= @course.title %> <small><%= @course.code %></small></h3>
+  <h4><%= @course.days %> <small><%= @course.start_time %> - <%= @course.end_time %></small></h4>
+  
+  <!-- Professor Section -->
+  <section>
+    <h4>Instructors</h4>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th class="mdl-data-table__cell--non-numeric">Email</th>
+      </tr>
+      <% @course.faculty.each do |faculty| %>
+        
+        <tr class="clickable-row" data-href="<%= user_path faculty %>">
+          <td class="mdl-data-table__cell--non-numeric"><%= faculty.name %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= faculty.email %></td>
+        </tr>
+      
+      <% end %>
+    </table>
+  </section>
+  
+  <!-- Student Section -->
+  <section>
+    <h4>Roster</h4>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Name</th>
+        <th class="mdl-data-table__cell--non-numeric">Email</th>
+      </tr>
+      <% @course.students.each do |student| %>
+        
+        <tr class="clickable-row" data-href="<%= user_path student %>">
+          <td class="mdl-data-table__cell--non-numeric"><%= student.name %></td>
+          <td class="mdl-data-table__cell--non-numeric"><%= student.email %></td>
+        </tr>
+      
+      <% end %>
+    </table>
+  </section>
+</div>

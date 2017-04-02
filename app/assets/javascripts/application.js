@@ -19,3 +19,12 @@
 document.addEventListener('turbolinks:load', function() {
     componentHandler.upgradeDom();
 });
+
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        var url = $(this).data("href");
+        console.log(url);
+        window.location.href = url;
+        console.log(window.location);
+    });
+});
