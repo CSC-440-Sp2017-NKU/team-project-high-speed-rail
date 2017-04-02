@@ -15,6 +15,12 @@ class User < ApplicationRecord
   has_many :user_permissions
   has_many :permissions, through: :user_permissions
   
+  has_many :student_courses
+  has_many :enrolled_courses, through: :student_courses, source: :course
+  
+  has_many :faculty_courses
+  has_many :taught_courses, through: :faculty_courses, source: :course
+  
   has_many :questions
   has_many :answers
   has_many :ratings

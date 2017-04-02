@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170402002344) do
+ActiveRecord::Schema.define(version: 20170402174528) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20170402002344) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "faculty_courses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_faculty_courses_on_course_id"
+    t.index ["user_id"], name: "index_faculty_courses_on_user_id"
+  end
+
   create_table "permissions", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -45,8 +54,6 @@ ActiveRecord::Schema.define(version: 20170402002344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.integer  "topic_id"
-    t.index ["topic_id"], name: "index_questions_on_topic_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -60,12 +67,13 @@ ActiveRecord::Schema.define(version: 20170402002344) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
-  create_table "topics", force: :cascade do |t|
-    t.string   "title"
+  create_table "student_courses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_topics_on_deleted_at"
+    t.index ["course_id"], name: "index_student_courses_on_course_id"
+    t.index ["user_id"], name: "index_student_courses_on_user_id"
   end
 
   create_table "user_permissions", force: :cascade do |t|
