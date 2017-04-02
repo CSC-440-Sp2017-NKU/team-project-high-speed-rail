@@ -1,22 +1,33 @@
 <% provide(:title, "Log in") %>
-<h1>Log in</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--4-col mdl-cell--6-col-tablet login-form">
+  <div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-card">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Log in</h2>
+    </div>
     <%= form_for(:session, url: login_path) do |f| %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %>
-        <span>Remember me on this computer</span>
-      <% end %>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <div class="mdl-card__supporting-text">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullwidth">
+          <div>
+            <%= f.label :email, :class => 'mdl-textfield__label' %>
+            <%= f.email_field :email, class: 'form-control mdl-textfield__input' %>
+          </div>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullwidth">
+          <div>
+            <%= f.label :password, :class => 'mdl-textfield__label' %>
+            <%= f.password_field :password, class: 'form-control mdl-textfield__input' %>
+          </div>
+        </div>
+        <div class="login-checkbox">
+          <%= f.label :remember_me, class: "checkbox inline mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" do %>
+            <%= f.check_box :remember_me, class: "mdl-checkbox__input" %>
+            <span class="mdl-checkbox__label" >Remember me on this computer</span>
+          <% end %>         
+        </div>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <%= f.submit "Log in", :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
+      </div>
     <% end %>
   </div>
-</div>
+</section>

@@ -130,9 +130,9 @@ body{
     background: #da9696;
 }
 
-.center-this{
-    //margin:0 auto;
-}
+// .center-this{
+//     //margin:0 auto;
+// }
 
 .our-mdl section.section--center .answer__text:not(:last-child){
     border-bottom: 1px solid rgba(0,0,0,.13);
@@ -322,4 +322,18 @@ body{
     background: rgb(57, 63 ,67);
     color: rgb(255, 199, 44);
     height: 160px;
+}
+
+.login-title{
+    text-align:center;
+}
+
+@media (min-width: 840px) {
+    .login-form{
+        min-width: 500px;
+    }
+}
+
+.login-checkbox{
+    display: inline-block;
 }

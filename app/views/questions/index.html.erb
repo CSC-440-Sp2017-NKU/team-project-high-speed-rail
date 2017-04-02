@@ -19,11 +19,31 @@
         </div>
         <div class="mdl-card__supporting-text">
           <div class=" mdl-grid mdl-grid--no-spacing answer-grid">
-          <% if @questions.any? %>
-            <%= render @questions %>
-          <% else %>
-            <h4>No questions :(</h4>
-          <% end %>
+            <% @questions.each do |question| %>
+              <div class="section__circle-container mdl-cell mdl-cell--1-col mdl-cell--2-col-phone center-this">
+                <!-- answer count goes here -->
+                <i class="material-icons mdl-badge mdl-badge--overlap mdl-list__item-icon question-badge" data-badge="<%= question.answers.count %>">question_answer</i>
+                  <div class = "admin-buttons">
+                    <%= link_to edit_question_path(question) ,:method => :get do %>
+                      <i class="material-icons question-button">edit</i>
+                    <% end %>
+                    <%= link_to question, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="material-icons question-button">delete</i>
+                    <% end %>
+                  </div>
+              </div>
+              <div class="section__text answer__text mdl-cell mdl-cell--11-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
+                <div class="question-title"><a href="<%= question_path question %>"><%= question.title %></a></div>
+                <small>Posted <%= time_ago_in_words(question.created_at) %> ago.</small>
+                <% if question.answers.any? %>
+                  <br>
+                  <small>Last answer given <%= time_ago_in_words question.answers.last.created_at %> ago.</small>
+                  <% else %>
+                  <br>
+                  <small>No answers yet.</small>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class="mdl-card__actions mdl-card--border">
@@ -33,4 +53,6 @@
     </section>
   </div>
 </div>
+<br>
+
 <!--new style starts here-->
