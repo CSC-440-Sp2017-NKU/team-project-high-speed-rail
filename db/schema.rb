@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327033916) do
+ActiveRecord::Schema.define(version: 20170402000053) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20170327033916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.integer  "topic_id"
+    t.index ["topic_id"], name: "index_questions_on_topic_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -46,6 +48,14 @@ ActiveRecord::Schema.define(version: 20170327033916) do
     t.integer  "user_id"
     t.index ["answer_id"], name: "index_ratings_on_answer_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_topics_on_deleted_at"
   end
 
   create_table "user_permissions", force: :cascade do |t|

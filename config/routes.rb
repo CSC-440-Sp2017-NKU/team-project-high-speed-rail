@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   
   resources :users#, except: :index
   
+  resources :topics, only: [:show, :new, :create, :destroy]
+  
   resources :questions do
     resources :answers, only: [:create, :update, :destroy] do
       member do
