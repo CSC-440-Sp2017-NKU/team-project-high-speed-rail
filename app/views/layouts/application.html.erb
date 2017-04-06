@@ -15,7 +15,12 @@
     
     <div class="page-content">
       <% flash.each do |message_type, message| %>
-        <div class="alert-<%= message_type %>"><%= message %></div>
+        <!--<div class="alert-<%#= message_type %>"><%#= message %></div>-->
+        <div class="mdl-js-snackbar mdl-snackbar notice-toast <%= message_type %>">
+          <div class="mdl-snackbar__text"></div>
+          <button class="mdl-snackbar__action" type="button"></button>
+          <div class="notice-text" style="visibility:hidden;"><%= message %></div>
+        </div>
       <% end %>
       
       <%= yield %>

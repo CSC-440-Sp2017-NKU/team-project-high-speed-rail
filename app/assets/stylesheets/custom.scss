@@ -324,6 +324,7 @@ body{
     height: 160px;
 }
 
+
 .login-title{
     text-align:center;
 }
@@ -336,4 +337,12 @@ body{
 
 .login-checkbox{
     display: inline-block;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.danger {
+    background-color: #da9696;
 }

@@ -15,6 +15,12 @@ class User < ApplicationRecord
   has_many :user_permissions
   has_many :permissions, through: :user_permissions
   
+  has_many :student_courses
+  has_many :enrolled_courses, through: :student_courses, source: :course
+  
+  has_many :faculty_courses
+  has_many :taught_courses, through: :faculty_courses, source: :course
+  
   has_many :questions
   has_many :answers
   has_many :ratings
@@ -28,6 +34,12 @@ class User < ApplicationRecord
     user
   end
   
+  def User.create_student(data)
+    u = User.new_student(data)
+    u.save
+    u
+  end
+  
   def User.new_faculty(data)
     user = User.new(data)
     
@@ -38,6 +50,12 @@ class User < ApplicationRecord
     user
   end
   
+  def User.create_faculty(data)
+    u = User.new_faculty(data)
+    u.save
+    u
+  end
+  
   def User.new_registrar(data)
     user = User.new(data)
     
@@ -45,6 +63,12 @@ class User < ApplicationRecord
     user.permissions << Permission.find_permission(:course_manage)
     
     user
+  end
+  
+  def User.create_registrar(data)
+    u = User.new_registrar(data)
+    u.save
+    u
   end
   
   def User.new_admin(data)
@@ -57,6 +81,12 @@ class User < ApplicationRecord
     user.permissions << Permission.find_permission(:user_manage)
     
     user
+  end
+  
+  def User.create_admin(data)
+    u = User.new_admin(data)
+    u.save
+    u
   end
   
   def permission?(permission)

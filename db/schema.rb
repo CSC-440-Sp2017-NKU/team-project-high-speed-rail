@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327033916) do
+ActiveRecord::Schema.define(version: 20170402174528) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -21,6 +21,25 @@ ActiveRecord::Schema.define(version: 20170327033916) do
     t.index ["question_id", "created_at"], name: "index_answers_on_question_id_and_created_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "code"
+    t.string   "title"
+    t.string   "days"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "faculty_courses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_faculty_courses_on_course_id"
+    t.index ["user_id"], name: "index_faculty_courses_on_user_id"
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -46,6 +65,15 @@ ActiveRecord::Schema.define(version: 20170327033916) do
     t.integer  "user_id"
     t.index ["answer_id"], name: "index_ratings_on_answer_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
+  create_table "student_courses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_student_courses_on_course_id"
+    t.index ["user_id"], name: "index_student_courses_on_user_id"
   end
 
   create_table "user_permissions", force: :cascade do |t|

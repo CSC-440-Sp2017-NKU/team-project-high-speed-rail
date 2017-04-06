@@ -18,4 +18,29 @@
 
 document.addEventListener('turbolinks:load', function() {
     componentHandler.upgradeDom();
+    
+    if ( $('.notice-toast').length ){
+        console.log('Made it here...');
+        var snackbarContainer = document.querySelector('.notice-toast');
+        var msg = $('.notice-toast .notice-text').text();
+        
+        var data = {
+            message: msg,
+            actionText: "",
+            actionHandler: function(event){
+                $(".mdl-snackbar--active").removeClass("mdl-snackbar--active");
+            }
+        };
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    }
+});
+
+jQuery(document).ready(function($) {
+    $(".mdl-snackbar__text").append("<i class='material-icons'>close</i>");
+    $(".clickable-row").click(function() {
+        var url = $(this).data("href");
+        console.log(url);
+        window.location.href = url;
+        console.log(window.location);
+    });
 });
