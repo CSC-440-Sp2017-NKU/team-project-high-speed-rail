@@ -89,6 +89,12 @@ class User < ApplicationRecord
     u
   end
   
+  def recent_activity
+    qs = questions.order(created_at: :asc).limit(10)
+    as = answers.limit(10)
+    (qs + as)[0..9]
+  end
+  
   def permission?(permission)
     permissions.any? { |p| p.name.underscore.to_sym == permission }
   end
