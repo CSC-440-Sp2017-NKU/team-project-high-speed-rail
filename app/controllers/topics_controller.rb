@@ -1,9 +1,8 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :destroy]
   
-  acts_as_paranoid
-  
   def show
+    @questions = @topic.questions
   end
   
   def new
@@ -16,8 +15,8 @@ class TopicsController < ApplicationController
       flash[:success] = "Topic created."
       redirect_to @topic
     else
-      flash[:danger] = "Topic not created."
-      redirect_to new_topic_path
+      flash.now[:danger] = "Topic not created."
+      render :new
     end
   end
 

@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170402174528) do
     t.index ["course_id"], name: "index_student_courses_on_course_id"
     t.index ["user_id"], name: "index_student_courses_on_user_id"
   end
-  
+
   create_table "topics", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false

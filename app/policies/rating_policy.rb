@@ -1,0 +1,2 @@
+class RatingPolicy < ApplicationPolicy
+end

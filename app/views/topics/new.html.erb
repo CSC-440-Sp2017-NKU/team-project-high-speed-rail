@@ -1,2 +1,12 @@
-<h1>Topics#new</h1>
-<p>Find me in app/views/topics/new.html.erb</p>
+<h1>New Topic</h1>
+
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--4-col mdl-cell--6-col-tablet login-form">
+  <div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-card">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">New Topic</h2>
+    </div>
+    <%= render 'form', topic: @topic %>
+  </div>
+</section>
+
+

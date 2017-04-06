@@ -19,7 +19,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Pundit for user permissions
 gem 'pundit'
 # acts_as_paranoid for soft deletes
-gem 'acts_as_paranoid'
+gem "paranoia"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

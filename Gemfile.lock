@@ -38,9 +38,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts_as_paranoid (0.5.0)
-      activerecord (>= 4.0, < 5.1)
-      activesupport (>= 4.0, < 5.1)
     ansi (1.5.0)
     arel (7.1.4)
     autoprefixer-rails (6.7.7)
@@ -120,6 +117,8 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    paranoia (2.2.1)
+      activerecord (>= 4.0, < 5.1)
     pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -217,7 +216,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_paranoid
   bcrypt (~> 3.1.7)
   byebug
   coffee-rails (~> 4.1.0)
@@ -229,6 +227,7 @@ DEPENDENCIES
   listen (= 3.0.8)
   material_design_lite-sass
   minitest-reporters (= 1.1.9)
+  paranoia
   pg
   puma (= 3.4.0)
   pundit
