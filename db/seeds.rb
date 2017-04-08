@@ -15,12 +15,15 @@ Permission.create(name: "course_manage")
 Permission.create(name: "user_manage")
 Permission.create(name: "student")
 Permission.create(name: "faculty")
+Permission.create(name: "admin")
 
 se = Course.create(code: "CSC 440", title: "Software Engineering", days: "TR", start_time: "16:45:00", end_time: "18:05:00")
 os = Course.create(code: "CSC 460", title: "Operating Systems", days: "TR", start_time: "15:05:00", end_time: "16:20:00")
 ai = Course.create(code: "CSC 425", title: "Artificial Intelligence", days: "MW", start_time: "16:45:00", end_time: "18:05:00")
 tc = Course.create(code: "CSC 485", title: "Theory of Computation", days: "TR", start_time: "13:45:00", end_time: "15:05:00")
 wp = Course.create(code: "CSC 301", title: "Web Programming", days: "MW", start_time: "16:45:00", end_time: "18:05:00")
+
+User.create_admin(name: "Admin", email: "admin@nku.edu", password: "password", password_confirmation: "password")
 
 User.create_student(name: "E.J.", email: "student1@nku.edu", password: "password", password_confirmation: "password").enrolled_courses << se << os << ai
 User.create_student(name: "Andy", email: "student2@nku.edu", password: "password", password_confirmation: "password").enrolled_courses << se << os << tc << wp

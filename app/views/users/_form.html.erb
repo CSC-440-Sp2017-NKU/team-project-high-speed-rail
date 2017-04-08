@@ -1,37 +1,49 @@
 <%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="mdl-card__supporting-text">
+    
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-field <%= "is-invalid" if user.errors[:name].any? %>">
+      <%= f.label :name, :class => 'mdl-textfield__label'%>
+      <%= f.text_field :name, :class => "mdl-textfield__input"%>
+      <span class="mdl-textfield__error">Name <%= user.errors[:name][0] %></span>
     </div>
-  <% end %>
 
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <%= f.label :name, :class => 'mdl-textfield__label'%>
-    <%= f.text_field :name, :class => 'mdl-textfield__input'%>
-  </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-field <%= "is-invalid" if user.errors[:email].any? %>">
+      <%= f.label :email, :class => 'mdl-textfield__label' %>
+      <%= f.text_field :email, :class => "mdl-textfield__input" %>
+      <span class="mdl-textfield__error">Email <%= user.errors[:email][0] %></span>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-field <%= "is-invalid" if user.errors[:password].any? %>">
+      <%= f.label :password, :class => 'mdl-textfield__label' %>
+      <%= f.password_field :password, :class => "mdl-textfield__input" %>
+      <span class="mdl-textfield__error">Password <%= user.errors[:password][0] %></span>
+    </div>
   
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <%= f.label :email, :class => 'mdl-textfield__label' %>
-    <%= f.text_field :email, :class => 'mdl-textfield__input' %>
-  </div>
-  
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <%= f.label :password, :class => 'mdl-textfield__label' %>
-    <%= f.password_field :password, :class => 'mdl-textfield__input' %>
-  </div>
-  
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <%= f.label :password_confirmation, :class => 'mdl-textfield__label' %>
-    <%= f.password_field :password_confirmation, :class => 'mdl-textfield__input' %>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-field <%= "is-invalid" if user.errors[:password_confirmation].any? %>">
+      <%= f.label :password_confirmation, :class => 'mdl-textfield__label' %>
+      <%= f.password_field :password_confirmation, :class => "mdl-textfield__input" %>
+      <span class="mdl-textfield__error">Password confirmation <%= user.errors[:password_confirmation][0] %></span>
+    </div>
+
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="usertype-student">
+      <input type="radio" id="usertype-student" class="mdl-radio__button" name="usertype" value="student" checked>
+      <span class="mdl-radio__label">Student</span>
+    </label>
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="usertype-faculty">
+      <input type="radio" id="usertype-faculty" class="mdl-radio__button" name="usertype" value="faculty">
+      <span class="mdl-radio__label">Faculty</span>
+    </label>
+    <% if current_user.permission? :admin %>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="usertype-registrar">
+        <input type="radio" id="usertype-registrar" class="mdl-radio__button" name="usertype" value="registrar">
+        <span class="mdl-radio__label">Registrar</span>
+      </label>
+    <% end %>
+    
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="mdl-card__actions mdl-card--border">
+    <%= f.submit "Create User", :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
   </div>
+  
 <% end %>

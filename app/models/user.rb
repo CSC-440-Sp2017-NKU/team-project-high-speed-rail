@@ -79,6 +79,7 @@ class User < ApplicationRecord
     user.permissions << Permission.find_permission(:topic_manage)
     user.permissions << Permission.find_permission(:course_manage)
     user.permissions << Permission.find_permission(:user_manage)
+    user.permissions << Permission.find_permission(:admin)
     
     user
   end

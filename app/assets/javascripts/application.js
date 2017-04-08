@@ -19,14 +19,14 @@
 document.addEventListener('turbolinks:load', function() {
     componentHandler.upgradeDom();
     
-    if ( $('.notice-toast').length ){
+    if ( $('.mdl-snackbar').length ){
         console.log('Made it here...');
-        var snackbarContainer = document.querySelector('.notice-toast');
-        var msg = $('.notice-toast .notice-text').text();
+        var snackbarContainer = document.querySelector('.mdl-snackbar');
+        var msg = $('.notice-text').text();
         
         var data = {
             message: msg,
-            actionText: "",
+            actionText: "Dismiss",
             actionHandler: function(event){
                 $(".mdl-snackbar--active").removeClass("mdl-snackbar--active");
             }

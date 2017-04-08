@@ -335,8 +335,20 @@ body{
     }
 }
 
+.form-field {
+    display: block;
+}
+
+.mdl-radio {
+    padding-right: 10px;
+}
+
 .login-checkbox{
     display: inline-block;
+}
+
+.answer__text a {
+    color: #333333;
 }
 
 .clickable-row {
@@ -344,5 +356,9 @@ body{
 }
 
 .danger {
-    background-color: #da9696;
+    color: #da9696;
+}
+
+.success {
+    color: #93c393;
 }
