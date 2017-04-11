@@ -5,11 +5,13 @@ class CoursesController < ApplicationController
   end
 
   def new
+    authorize Course
     @course = Course.new
   end
 
   def create
     @course = Course.new(course_params)
+    authorize @course
     if @course.save
       flash[:success] = "Course added."
       redirect_to @course
@@ -19,9 +21,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    authorize @course
   end
 
   def update
+    authorize @course
     if @course.update(course_params)
       flash[:success] = "Course updated."
       redirect_to @course
@@ -31,6 +35,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    authorize @course
     @course.destroy
     redirect_to(request.referrer || root_path)
   end

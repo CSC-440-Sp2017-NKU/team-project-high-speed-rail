@@ -22,15 +22,28 @@
     </div>
   </header>
   <div class="mdl-layout__drawer drawer">
-    <span class="mdl-layout-title">NKUNet</span>
+    <span class="mdl-layout-title">
+      <span class="drawer-title">NKUNet</span>
+    </span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="<%= root_path %>">Home</a>
-      <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+      <a class="mdl-navigation__link" href="<%= root_path %>"><i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="<%= new_question_path %>"><i class="material-icons">question_answer</i> New Question</a>
+      
+      <% if logged_in? %>
+        <%= link_to current_user, class: "mdl-navigation__link" do %>
+          <i class="material-icons">account_circle</i> Profile
+        <% end %>
+      <% end %> 
+      
       <div class="drawer-separator"></div>
       <% if logged_in? %>
-        <%= link_to "Logout", logout_path, :method => :delete, :class => "mdl-navigation__link" %>
+        <%= link_to logout_path, :method => :delete, :class => "mdl-navigation__link" do %>
+          <i class="material-icons flipped">exit_to_app</i> Sign Out
+        <% end %>
       <% else %>
-        <%= link_to "Login", login_path, :class => "mdl-navigation__link" %>
+        <%= link_to login_path, :class => "mdl-navigation__link" do %>
+          <i class="material-icons">exit_to_app</i> Sign In
+        <% end %>
       <% end %>
     </nav>
   </div>

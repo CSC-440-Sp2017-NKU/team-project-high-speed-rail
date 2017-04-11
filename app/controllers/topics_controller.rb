@@ -6,11 +6,13 @@ class TopicsController < ApplicationController
   end
   
   def new
+    authorize Topic
     @topic = Topic.new
   end
 
   def create
     @topic = Topic.new(topic_params)
+    authorize @topic
     if @topic.save
       flash[:success] = "Topic created."
       redirect_to @topic
@@ -21,6 +23,7 @@ class TopicsController < ApplicationController
   end
 
   def destroy
+    authorize @topic
     @topic.destroy
   end
   

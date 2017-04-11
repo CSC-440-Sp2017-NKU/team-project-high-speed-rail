@@ -21,6 +21,10 @@ body{
     min-height: 50px;
 }
 
+.enable-overflow {
+    overflow: visible;
+}
+
 .mdl-card__title {
     color: #fff;
     height:100px;
@@ -343,12 +347,35 @@ body{
     padding-right: 10px;
 }
 
+.drawer-title {
+    font-size: 1.75em;
+    position: absolute;
+    bottom: 0px;
+}
+
+.flipped {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
 .login-checkbox{
     display: inline-block;
 }
 
 .answer__text a {
+    text-decoration: none;
     color: #333333;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.course-menu {
+    z-index: 99;
 }
 
 .clickable-row {

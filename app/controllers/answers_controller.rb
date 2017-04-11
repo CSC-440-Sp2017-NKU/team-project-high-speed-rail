@@ -2,6 +2,8 @@ class AnswersController < ApplicationController
     before_action :set_answer, only: [:update, :destroy]
     
     def create
+        authorize Answer
+        
         @question = Question.find(params[:question_id])
         @answer = @question.answers.build(answer_params)
         @answer.user = current_user
@@ -16,6 +18,8 @@ class AnswersController < ApplicationController
     end
     
     def update
+        authorize @answer
+        
         if @answer.update(answer_params)
             flash[:success] = "Answer was updated."
             redirect_to @answer.question
@@ -26,6 +30,8 @@ class AnswersController < ApplicationController
     end
     
     def destroy
+        authorize @answer
+        
         @question = @answer.question
         @answer.destroy
         flash[:success] = "Answer was destroyed."

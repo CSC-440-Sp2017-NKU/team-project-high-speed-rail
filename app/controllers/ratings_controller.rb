@@ -6,6 +6,8 @@ class RatingsController < ApplicationController
     @vote = @answer.ratings.build(is_liked: true)
     @vote.user = current_user
     
+    authorize @vote
+    
     respond_to do |format|
       if @vote.save
         format.html { redirect_to @answer.question, notice: 'Upvoted Answer' }
@@ -19,6 +21,8 @@ class RatingsController < ApplicationController
   def downvote
     @vote = @answer.ratings.build(is_liked: false)
     @vote.user = current_user
+    
+    authorize @vote
     
     respond_to do |format|
       if @vote.save

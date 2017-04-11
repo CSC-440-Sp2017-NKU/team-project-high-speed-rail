@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require_tree .
 //= require material
+//= require mdl-selectfield
+
 
 document.addEventListener('turbolinks:load', function() {
     componentHandler.upgradeDom();
@@ -36,11 +38,24 @@ document.addEventListener('turbolinks:load', function() {
 });
 
 jQuery(document).ready(function($) {
-    $(".mdl-snackbar__text").append("<i class='material-icons'>close</i>");
     $(".clickable-row").click(function() {
         var url = $(this).data("href");
         console.log(url);
         window.location.href = url;
         console.log(window.location);
     });
+    
+    $("#add-new-course").click(function() {
+        $("#new-course-select *").removeAttr('data-upgraded');
+        $("#course-choices").append($("#new-course-select").html());
+        componentHandler.upgradeDom();
+    });
 });
+
+function removeChoice(element){
+    element.parent().remove();
+}
+
+function initSelect(){
+    componentHandler.upgradeDom();
+}

@@ -12,7 +12,7 @@
 </div>
 <div class="section__text answer__text mdl-cell mdl-cell--11-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone">
   <div class="question-title"><a href="<%= question_path question %>"><%= question.title %></a></div>
-  <small>Posted <%= time_ago_in_words(question.created_at) %> ago by <%= link_to question.user.name, question.user %></small>
+  <small>Posted <%= time_ago_in_words(question.created_at) %> ago by <b><%= link_to question.user.name, question.user %></b></small>
   </br>
   <% if question.answers.any? %>
     <small>Last answer given <%= time_ago_in_words question.answers.last.created_at %> ago.</small>
