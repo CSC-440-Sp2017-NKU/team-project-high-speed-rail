@@ -23,17 +23,25 @@
   </header>
   <div class="mdl-layout__drawer drawer">
     <span class="mdl-layout-title">
+      <% if logged_in? %>
+        <span class="username-display"><%= current_user.name %></span>
+      <% else %>       
       <span class="drawer-title">NKUNet</span>
+      <% end %>
     </span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="<%= root_path %>"><i class="material-icons">home</i> Home</a>
       <a class="mdl-navigation__link" href="<%= new_question_path %>"><i class="material-icons">question_answer</i> New Question</a>
+      <% if logged_in? and current_user.permission? :topic %>
+        <a class="mdl-navigation__link" href="<%= new_topic_path %>"><i class="material-icons">create_new_folder</i> Create New Topic</a>
+      <% end %> 
       
       <% if logged_in? %>
         <%= link_to current_user, class: "mdl-navigation__link" do %>
           <i class="material-icons">account_circle</i> Profile
         <% end %>
       <% end %> 
+      
       
       <div class="drawer-separator"></div>
       <% if logged_in? %>

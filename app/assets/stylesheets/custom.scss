@@ -389,3 +389,17 @@ body{
 .success {
     color: #93c393;
 }
+
+.username-display{
+    color:#efefef;
+    position: absolute;
+    bottom: 0px;
+}
+
+.mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label{
+    color: #333333 !important;
+}
+
+.mdl-selectfield--floating-label.is-focused .mdl-selectfield__label{
+    color: #333333 !important;
+}

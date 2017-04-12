@@ -5,13 +5,16 @@
     </div>
 
     <div class="mdl-card__supporting-text">
+        <h4>Recent Activity</h4>
+        <hr>
         <% @ourUser = @user.recent_activity %>
         <% @ourUser.each do |results| %>
+            <p><small>Posted <%= time_ago_in_words(results.created_at) %> ago</small></br> 
             <% if results.is_a? Question %>
-                <p><small><%= results.created_at %></small></br>Asked <%= results.title %> <% if results.topic %> on <%= results.topic.title %> <% end %></p>
+                Asked <%= results.title %> <% if results.topic %> on <%= results.topic.title %> <% end %></p>
             <% end %>
             <% if results.is_a? Answer %>
-                <p><small><%= results.created_at %></small></br> Submited answer for <%= results.question.title %> <% if results.question.topic %> on <%= results.question.topic.title %> <% end %></p>
+                Submited answer for <%= results.question.title %> <% if results.question.topic %> on <%= results.question.topic.title %> <% end %></p>
             <% end %>
         <% end %>
     </div>
