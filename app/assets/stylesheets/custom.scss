@@ -419,3 +419,16 @@ input:focus::-webkit-datetime-edit {
 .mdl-selectfield--floating-label.is-focused .mdl-selectfield__label{
     color: #333333 !important;
 }
+
+.basic-link{
+    text-decoration: none;
+    color:#000000;
+}
+.basic-link:hover{
+    text-decoration: underline;
+}
+.course-details, .post-details{
+    line-height: 12px;
+    display: inherit;
+    color: #9d9d9d;
+}

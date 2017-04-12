@@ -127,4 +127,18 @@ class User < ApplicationRecord
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
+  
+  def upvote_count
+    ratings.upvotes.count
+  end
+  
+  def downvote_count
+    ratings.downvotes.count
+  end
+  
+  def overall_rating
+    upvote_count - downvote_count
+  end
+  
 end
+
