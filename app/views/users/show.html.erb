@@ -11,7 +11,7 @@
         <h4>Courses</h4>
         <hr>
         <% @user.enrolled_courses.each do |course| %>
-            <p><%= course.code %>: <%= course.title %></br><small class="course-details"><%= course.days %> <%= course.start_time.strftime("%H:%M")  %>-<%= course.end_time.strftime("%H:%M")%></small></p>
+            <p><a class="basic-link" href="/courses/<%= course.id %>"><%= course.code %>: <%= course.title %></a></br><small class="course-details"><%= course.days %> <%= course.start_time.strftime("%H:%M")  %>-<%= course.end_time.strftime("%H:%M")%></small></p>
         <% end %>
         <h4>Recent Activity</h4>
         <hr>
