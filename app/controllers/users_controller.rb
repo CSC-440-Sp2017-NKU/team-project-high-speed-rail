@@ -27,12 +27,28 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
+    if params[:usertype] == "registrar"
+      @user = User.new_registrar(user_params)
+    elsif params[:usertype] == "faculty"
+      @user = User.new_faculty(user_params)
+    else
+      @user = User.new_student(user_params)
+    end
+    
     authorize @user
 
     respond_to do |format|
       if @user.save
+        if @user.permission? :student
+          params[:courses].each do |course_id|
+            @user.enrolled_courses << Course.find(course_id)
+          end
+        elsif @user.permission? :faculty
+          params[:courses].each do |course_id|
+            @user.taught_courses << Course.find(course_id)
+          end
+        end
+        
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

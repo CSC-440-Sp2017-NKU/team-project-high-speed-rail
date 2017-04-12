@@ -343,6 +343,22 @@ body{
     display: block;
 }
 
+.form-field-inline {
+    display: inline-block;
+}
+
+.time-field {
+    width: 100px;
+}
+
+input::-webkit-datetime-edit { 
+    color: transparent; 
+}
+
+input:focus::-webkit-datetime-edit { 
+    color: #000; 
+}
+
 .mdl-radio {
     padding-right: 10px;
 }

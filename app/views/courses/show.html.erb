@@ -1,6 +1,6 @@
 <div class="our-mdl">
   <h3><%= @course.title %> <small><%= @course.code %></small></h3>
-  <h4><%= @course.days %> <small><%= @course.start_time %> - <%= @course.end_time %></small></h4>
+  <h4><%= @course.days %> <small><%= @course.start_time.strftime("%H:%M") %> - <%= @course.end_time.strftime("%H:%M") %></small></h4>
   
   <!-- Professor Section -->
   <section>
