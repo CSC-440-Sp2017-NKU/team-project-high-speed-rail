@@ -1,11 +1,11 @@
 class RatingPolicy < ApplicationPolicy
   
   def upvote?
-    @user.permission? :course_manage
+    @user.permission? :post
   end
 
   def downvote?
-    @user.permission? :course_manage
+    @user.permission? :post
   end
   
 end
