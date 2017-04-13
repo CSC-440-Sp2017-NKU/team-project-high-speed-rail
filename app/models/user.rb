@@ -91,9 +91,8 @@ class User < ApplicationRecord
   end
   
   def recent_activity
-    qs = questions.order(created_at: :asc).limit(10)
-    as = answers.limit(10)
-    (qs + as)[0..9]
+    activity = (self.questions + self.answers).sort{|a,b| b.created_at <=> a.created_at }
+    activity[0..9]
   end
   
   def permission?(permission)

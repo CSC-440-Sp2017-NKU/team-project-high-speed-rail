@@ -3,7 +3,6 @@
     <div class="mdl-card__title">
       <h2 class="mdl-card__title-text"><%= @user.name %>&nbsp;&nbsp;&nbsp;</h2>
       <span class="mdl-card__title-text"><i class="material-icons">thumb_up</i>&nbsp;<%= @user.upvote_count %>&nbsp;<i class="material-icons">thumb_down</i>&nbsp;<%= @user.downvote_count %></span>
-      
 
     </div>
 
@@ -19,10 +18,10 @@
         <% @ourUser.each do |results| %>
             <p> 
             <% if results.is_a? Question %>
-                Asked <a class="basic-link" href="/questions/<%= results.id %>"><%= results.title %></a> <% if results.topic %> on <a class="basic-link" href="/topics/<%= results.topic_id %>"><%= results.topic.title %> </a> <% end %>
+                Asked <a class="basic-link" href="/questions/<%= results.id %>"><%= results.title %></a> <% if results.topic %> in <a class="basic-link" href="/topics/<%= results.topic_id %>"><%= results.topic.title %> </a> <% end %>
             <% end %>
             <% if results.is_a? Answer %>
-                Submited answer for <a class="basic-link" href="/questions/<%= results.question_id %>"><%= results.question.title %></a> <% if results.question.topic %> on <a class="basic-link" href="/topics/<%= results.question.topic_id %>"><%= results.question.topic.title %></a> <% end %>
+                Submited answer for <a class="basic-link" href="/questions/<%= results.question_id %>"><%= results.question.title %></a> <% if results.question.topic %> in <a class="basic-link" href="/topics/<%= results.question.topic_id %>"><%= results.question.topic.title %></a> <% end %>
             <% end %>
             </br><small class="post-details">Posted <%= time_ago_in_words(results.created_at) %> ago</small></p >
         <% end %>
