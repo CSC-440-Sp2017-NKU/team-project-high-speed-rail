@@ -1,0 +1,27 @@
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--8-col mdl-cell--6-col-tablet">
+  <div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-card">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text"><%= @course.code %> <%= @course.title %>&nbsp;&nbsp;&nbsp;</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <span class="mdl-card__title-text"><i class="material-icons">schedule</i>&nbsp;<%= @course.days %> <%= @course.start_time.strftime("%H:%M") %> - <%= @course.end_time.strftime("%H:%M") %></span>
+
+        <h4>Instructors</h4>
+        <hr>
+        <% @course.faculty.each do |faculty| %>
+          <p>
+          <a class="basic-link" href="/users/<%= faculty.id %>"><%= faculty.name %></a>
+          <br><small class="post-details"><%= faculty.email %></small>
+          </p>
+        <% end %>
+        <h4>Roster</h4>
+        <hr>
+        <% @course.students.each do |student| %>
+          <p>
+          <a class="basic-link" href="/users/<%= student.id %>"><%= student.name %></a>
+          <br><small class="post-details"><%= student.email %></small>
+          </p>
+        <% end %>
+    </div>
+  </div>
+</section>

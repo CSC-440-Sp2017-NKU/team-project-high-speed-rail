@@ -1,4 +1,43 @@
-<p id="notice"><%= notice %></p>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--8-col mdl-cell--6-col-tablet">
+  <div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp mdl-card">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text"><%= @user.name %>&nbsp;&nbsp;&nbsp;</h2>
+      <span class="mdl-card__title-text"><i class="material-icons">thumb_up</i>&nbsp;<%= @user.upvote_count %>&nbsp;<i class="material-icons">thumb_down</i>&nbsp;<%= @user.downvote_count %></span>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    </div>
+
+    <div class="mdl-card__supporting-text">
+        <h4>Contact</h4>
+        <hr>
+        <p><%= @user.email %></p>
+        <% if !@user.taught_courses.blank? %>
+            <h4>Taught Courses</h4>
+            <hr>
+            <% @user.taught_courses.each do |course| %>
+                <p><a class="basic-link" href="/courses/<%= course.id %>"><%= course.code %>: <%= course.title %></a></br><small class="course-details"><%= course.days %> <%= course.start_time.strftime("%H:%M")  %>-<%= course.end_time.strftime("%H:%M")%></small></p>
+            <% end %>
+        <% end %>    
+        <% if !@user.enrolled_courses.blank? %>
+            <h4>Enrolled Courses</h4>
+            <hr>
+            <% @user.enrolled_courses.each do |course| %>
+                <p><a class="basic-link" href="/courses/<%= course.id %>"><%= course.code %>: <%= course.title %></a></br><small class="course-details"><%= course.days %> <%= course.start_time.strftime("%H:%M")  %>-<%= course.end_time.strftime("%H:%M")%></small></p>
+            <% end %>
+        <% end %>
+        <h4>Recent Activity</h4>
+        <hr>
+        <% @ourUser = @user.recent_activity %>
+        <% @ourUser.each do |results| %>
+            <p> 
+            <% if results.is_a? Question %>
+                Asked <a class="basic-link" href="/questions/<%= results.id %>"><%= results.title %></a> <% if results.topic %> in <a class="basic-link" href="/topics/<%= results.topic_id %>"><%= results.topic.title %> </a> <% end %>
+            <% end %>
+            <% if results.is_a? Answer %>
+                Submited answer for <a class="basic-link" href="/questions/<%= results.question_id %>"><%= results.question.title %></a> <% if results.question.topic %> in <a class="basic-link" href="/topics/<%= results.question.topic_id %>"><%= results.question.topic.title %></a> <% end %>
+            <% end %>
+            </br><small class="post-details">Posted <%= time_ago_in_words(results.created_at) %> ago</small></p >
+        <% end %>
+    </div>
+
+  </div>
+</section>

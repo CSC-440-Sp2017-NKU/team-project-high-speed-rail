@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
 
-  root 'questions#index'
+  get '/home', to: 'static_pages#home'
+
+  root 'static_pages#home'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
   resources :users#, except: :index
+  
+ resources :topics, except: [:edit, :update]
   
   resources :questions do
     resources :answers, only: [:create, :update, :destroy] do
@@ -17,6 +21,8 @@ Rails.application.routes.draw do
       #resources :ratings, only: [:create, :update, :destroy]
     end
   end
+  
+  resources :courses, except: :index
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

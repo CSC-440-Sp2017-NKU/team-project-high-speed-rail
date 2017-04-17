@@ -2,6 +2,12 @@
   <div class="mdl-card__supporting-text">
     <%= render 'shared/error_messages', object: f.object %>
     
+    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label topic-select">
+      <%= f.collection_select( :topic_id, Topic.all, :id, :title, {include_blank: true}, {:class => 'required mdl-selectfield__select'}) %>
+      <label class="mdl-selectfield__label">Topic</label>
+      <span class="mdl-selectfield__error">Input is not a topic!</span>
+    </div>    
+    
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label fullwidth">
         <%= f.label :title, :class => 'mdl-textfield__label'%>
         <%= f.text_field :title, :class => 'mdl-textfield__input'%>

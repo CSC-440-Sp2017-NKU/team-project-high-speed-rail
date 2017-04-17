@@ -2,37 +2,40 @@ class AnswersController < ApplicationController
     before_action :set_answer, only: [:update, :destroy]
     
     def create
+        authorize Answer
+        
         @question = Question.find(params[:question_id])
         @answer = @question.answers.build(answer_params)
         @answer.user = current_user
         
         if @answer.save
-            respond_to do |format|
-                format.html { redirect_to @question, notice: 'Answer was successfully added.' }
-            end
+            flash[:success] = 'Answer was added.'
+            redirect_to @question
         else
-            respond_to do |format|
-                format.html { redirect_to @question, notice: 'Answer could not be added.' }
-            end
+            flash[:danger] = 'Answer could not be added.'
+            redirect_to @question
         end
     end
     
     def update
-        respond_to do |format|
-            if @answer.update(answer_params)
-                format.html { redirect_to @answer.question, notice: 'Answer was successfully updated.' }
-            else
-                format.html { redirect_to @answer.question, notice: 'Answer could not be updated.' }
-            end
+        authorize @answer
+        
+        if @answer.update(answer_params)
+            flash[:success] = "Answer was updated."
+            redirect_to @answer.question
+        else
+            flash[:danger] = "Answer could not be updated."
+            redirect_to @answer.question
         end
     end
     
     def destroy
+        authorize @answer
+        
         @question = @answer.question
         @answer.destroy
-        respond_to do |format|
-            format.html { redirect_to @question, notice: 'Answer was successfully destroyed.' }
-        end
+        flash[:success] = "Answer was destroyed."
+        redirect_to @question
     end
     
     private

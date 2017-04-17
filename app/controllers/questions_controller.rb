@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     authorize @question
+    @topics = Topic.all
   end
 
   # GET /questions/1/edit
@@ -36,6 +37,7 @@ class QuestionsController < ApplicationController
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
+        @topics = Topic.all
         format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
@@ -76,6 +78,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :content)
+      params.require(:question).permit(:title, :content, :topic_id)
     end
 end

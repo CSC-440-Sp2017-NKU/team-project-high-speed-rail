@@ -15,7 +15,47 @@
 //= require turbolinks
 //= require_tree .
 //= require material
+//= require mdl-selectfield
+
 
 document.addEventListener('turbolinks:load', function() {
     componentHandler.upgradeDom();
+    
+    if ( $('.mdl-snackbar').length ){
+        console.log('Made it here...');
+        var snackbarContainer = document.querySelector('.mdl-snackbar');
+        var msg = $('.notice-text').text();
+        
+        var data = {
+            message: msg,
+            actionText: "Dismiss",
+            actionHandler: function(event){
+                $(".mdl-snackbar--active").removeClass("mdl-snackbar--active");
+            }
+        };
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    }
 });
+
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        var url = $(this).data("href");
+        console.log(url);
+        window.location.href = url;
+        console.log(window.location);
+    });
+    
+    $("#add-new-course").click(function() {
+        $("#new-course-select *").removeAttr('data-upgraded');
+        $("#course-choices").append($("#new-course-select").html());
+        componentHandler.upgradeDom();
+    });
+});
+
+function removeChoice(element){
+    element.parent().remove();
+}
+
+function initSelect(){
+    componentHandler.upgradeDom();
+}

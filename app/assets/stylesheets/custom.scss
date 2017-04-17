@@ -21,6 +21,10 @@ body{
     min-height: 50px;
 }
 
+.enable-overflow {
+    overflow: visible;
+}
+
 .mdl-card__title {
     color: #fff;
     height:100px;
@@ -324,6 +328,7 @@ body{
     height: 160px;
 }
 
+
 .login-title{
     text-align:center;
 }
@@ -334,6 +339,95 @@ body{
     }
 }
 
+.form-field {
+    display: block;
+}
+
+.form-field-inline {
+    display: inline-block;
+}
+
+.time-field {
+    width: 100px;
+}
+input::-webkit-datetime-edit{ color: transparent; }
+input:focus::-webkit-datetime-edit{ color: #000; } 
+.course-form .is-dirty input::-webkit-datetime-edit{ color: #000; }
+
+
+.mdl-radio {
+    padding-right: 10px;
+}
+
+.drawer-title {
+    font-size: 1.75em;
+    position: absolute;
+    bottom: 0px;
+}
+
+.flipped {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
 .login-checkbox{
     display: inline-block;
+}
+
+.answer__text a {
+    text-decoration: none;
+    color: #333333;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.course-menu {
+    z-index: 99;
+}
+
+.clickable-row {
+    cursor: pointer;
+}
+
+.danger {
+    color: #da9696;
+}
+
+.success {
+    color: #93c393;
+}
+
+.username-display{
+    color:#efefef;
+    position: absolute;
+    bottom: 0px;
+}
+
+.mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label{
+    color: #333333 !important;
+}
+
+.mdl-selectfield--floating-label.is-focused .mdl-selectfield__label{
+    color: #333333 !important;
+}
+
+.basic-link{
+    text-decoration: none;
+    color:#000000;
+}
+.basic-link:hover{
+    text-decoration: underline;
+}
+.course-details, .post-details{
+    line-height: 12px;
+    display: inherit;
+    color: #9d9d9d;
+}
+.time-field{
+    width:120px;
 }

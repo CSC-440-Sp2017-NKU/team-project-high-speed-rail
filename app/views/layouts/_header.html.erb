@@ -22,15 +22,47 @@
     </div>
   </header>
   <div class="mdl-layout__drawer drawer">
-    <span class="mdl-layout-title">NKUNet</span>
+    <span class="mdl-layout-title">
+      <% if logged_in? %>
+        <span class="username-display"><%= current_user.name %></span>
+      <% else %>       
+      <span class="drawer-title">NKUNet</span>
+      <% end %>
+    </span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="<%= root_path %>">Home</a>
-      <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+      <a class="mdl-navigation__link" href="<%= root_path %>"><i class="material-icons">home</i> Home</a>
+      <a class="mdl-navigation__link" href="<%= new_question_path %>"><i class="material-icons">question_answer</i> New Question</a>
+      <a class="mdl-navigation__link" href="<%= topics_path %>"><i class="material-icons">folder</i> Topics</a>
+      
+      <% if logged_in? %>
+        <%= link_to current_user, class: "mdl-navigation__link" do %>
+          <i class="material-icons">account_circle</i> Profile
+        <% end %>
+      <% end %> 
+      
+      <div class="drawer-separator"></div>
+
+      <% if logged_in? and current_user.permission? :topic %>
+        <a class="mdl-navigation__link" href="<%= new_topic_path %>"><i class="material-icons">create_new_folder</i> Create New Topic</a>
+      <% end %> 
+      
+      <% if logged_in? and current_user.permission? :user_manage %>
+        <a class="mdl-navigation__link" href="<%= new_topic_path %>"><i class="material-icons">person_add</i> Create New User</a>
+      <% end %> 
+      
+      <% if logged_in? and current_user.permission? :course_manage %>
+        <a class="mdl-navigation__link" href="<%= new_course_path %>"><i class="material-icons">group_add</i> Create New Course</a>
+      <% end %> 
+      
       <div class="drawer-separator"></div>
       <% if logged_in? %>
-        <%= link_to "Logout", logout_path, :method => :delete, :class => "mdl-navigation__link" %>
+        <%= link_to logout_path, :method => :delete, :class => "mdl-navigation__link" do %>
+          <i class="material-icons flipped">exit_to_app</i> Sign Out
+        <% end %>
       <% else %>
-        <%= link_to "Login", login_path, :class => "mdl-navigation__link" %>
+        <%= link_to login_path, :class => "mdl-navigation__link" do %>
+          <i class="material-icons">exit_to_app</i> Sign In
+        <% end %>
       <% end %>
     </nav>
   </div>

@@ -14,23 +14,45 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    authorize User
     @user = User.new
+    @courses = Course.order(code: :asc, title: :asc)
   end
 
   # GET /users/1/edit
   def edit
+    authorize @user
   end
 
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    if params[:usertype] == "registrar"
+      @user = User.new_registrar(user_params)
+    elsif params[:usertype] == "faculty"
+      @user = User.new_faculty(user_params)
+    else
+      @user = User.new_student(user_params)
+    end
+    
+    authorize @user
 
     respond_to do |format|
       if @user.save
+        if @user.permission? :student
+          params[:courses].each do |course_id|
+            @user.enrolled_courses << Course.find(course_id)
+          end
+        elsif @user.permission? :faculty
+          params[:courses].each do |course_id|
+            @user.taught_courses << Course.find(course_id)
+          end
+        end
+        
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
+        @courses = Course.order(code: :asc, title: :asc)
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -40,6 +62,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    authorize @user
+    
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -54,6 +78,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    authorize @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

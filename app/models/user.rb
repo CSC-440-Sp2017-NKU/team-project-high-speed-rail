@@ -15,6 +15,12 @@ class User < ApplicationRecord
   has_many :user_permissions
   has_many :permissions, through: :user_permissions
   
+  has_many :student_courses
+  has_many :enrolled_courses, through: :student_courses, source: :course
+  
+  has_many :faculty_courses
+  has_many :taught_courses, through: :faculty_courses, source: :course
+  
   has_many :questions
   has_many :answers
   has_many :ratings
@@ -28,6 +34,12 @@ class User < ApplicationRecord
     user
   end
   
+  def User.create_student(data)
+    u = User.new_student(data)
+    u.save
+    u
+  end
+  
   def User.new_faculty(data)
     user = User.new(data)
     
@@ -36,6 +48,12 @@ class User < ApplicationRecord
     user.permissions << Permission.find_permission(:faculty)
     
     user
+  end
+  
+  def User.create_faculty(data)
+    u = User.new_faculty(data)
+    u.save
+    u
   end
   
   def User.new_registrar(data)
@@ -47,6 +65,12 @@ class User < ApplicationRecord
     user
   end
   
+  def User.create_registrar(data)
+    u = User.new_registrar(data)
+    u.save
+    u
+  end
+  
   def User.new_admin(data)
     user = User.new(data)
     user.permissions << Permission.find_permission(:post)
@@ -55,8 +79,20 @@ class User < ApplicationRecord
     user.permissions << Permission.find_permission(:topic_manage)
     user.permissions << Permission.find_permission(:course_manage)
     user.permissions << Permission.find_permission(:user_manage)
+    user.permissions << Permission.find_permission(:admin)
     
     user
+  end
+  
+  def User.create_admin(data)
+    u = User.new_admin(data)
+    u.save
+    u
+  end
+  
+  def recent_activity
+    activity = (self.questions + self.answers).sort{|a,b| b.created_at <=> a.created_at }
+    activity[0..9]
   end
   
   def permission?(permission)
@@ -90,4 +126,18 @@ class User < ApplicationRecord
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
+  
+  def upvote_count
+    ratings.upvotes.count
+  end
+  
+  def downvote_count
+    ratings.downvotes.count
+  end
+  
+  def overall_rating
+    upvote_count - downvote_count
+  end
+  
 end
+

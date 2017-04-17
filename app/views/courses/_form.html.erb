@@ -1,0 +1,47 @@
+<div class="course-form">
+<%= form_for(course) do |f| %>
+  <div class="mdl-card__supporting-text enable-overflow">
+    
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <%= "is-invalid" if course.errors[:code].any? %>" style="width:100px;">
+      <%= f.label :code, :class => 'mdl-textfield__label'%>
+      <%= f.text_field :code, :class => "mdl-textfield__input"%>
+      <span class="mdl-textfield__error">Code <%= course.errors[:code][0] %></span>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <%= "is-invalid" if course.errors[:title].any? %>">
+      <%= f.label :title, :class => 'mdl-textfield__label' %>
+      <%= f.text_field :title, :class => "mdl-textfield__input" %>
+      <span class="mdl-textfield__error">Title <%= course.errors[:title][0] %></span>
+    </div>
+    </br>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label time-field <%= "is-invalid" if course.errors[:start_time].any? %>">
+      <%= f.label :start_time, :class => 'mdl-textfield__label' %>
+      <%= f.time_field :start_time, :class => "mdl-textfield__input" %>
+      <span class="mdl-textfield__error">Start time <%= course.errors[:start_time][0] %></span>
+    </div>
+  
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label time-field <%= "is-invalid" if course.errors[:end_time].any? %>">
+      <%= f.label :end_time, :class => 'mdl-textfield__label' %>
+      <%= f.time_field :end_time, :class => "mdl-textfield__input"%>
+      <span class="mdl-textfield__error">End time <%= course.errors[:end_time][0] %></span>
+    </div>
+    </br>
+    
+    <%= label_tag "Scheduled Days:" %>
+    <% Date::DAYNAMES.each do |day| %>
+      <% if day != "Saturday" and day != "Sunday" %>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+          <input type="checkbox" name="days[]" class="mdl-checkbox__input" value="<%= day.downcase %>">
+          <span class="mdl-checkbox__label"><%= day %></span>
+        </label>
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="mdl-card__actions mdl-card--border">
+    <%= f.submit "Create Course", :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
+  </div>
+  
+<% end %>
+</div>
