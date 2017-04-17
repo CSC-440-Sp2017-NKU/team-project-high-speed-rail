@@ -1,3 +1,4 @@
+<div class="course-form">
 <%= form_for(course) do |f| %>
   <div class="mdl-card__supporting-text enable-overflow">
     
@@ -28,10 +29,12 @@
     
     <%= label_tag "Scheduled Days:" %>
     <% Date::DAYNAMES.each do |day| %>
-      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-        <input type="checkbox" name="days[]" class="mdl-checkbox__input" value="<%= day.downcase %>">
-        <span class="mdl-checkbox__label"><%= day %></span>
-      </label>
+      <% if day != "Saturday" and day != "Sunday" %>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+          <input type="checkbox" name="days[]" class="mdl-checkbox__input" value="<%= day.downcase %>">
+          <span class="mdl-checkbox__label"><%= day %></span>
+        </label>
+      <% end %>
     <% end %>
 
   </div>
@@ -41,3 +44,4 @@
   </div>
   
 <% end %>
+</div>
