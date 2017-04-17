@@ -10,10 +10,19 @@
         <h4>Contact</h4>
         <hr>
         <p><%= @user.email %></p>
-        <h4>Courses</h4>
-        <hr>
-        <% @user.enrolled_courses.each do |course| %>
-            <p><a class="basic-link" href="/courses/<%= course.id %>"><%= course.code %>: <%= course.title %></a></br><small class="course-details"><%= course.days %> <%= course.start_time.strftime("%H:%M")  %>-<%= course.end_time.strftime("%H:%M")%></small></p>
+        <% if !@user.taught_courses.blank? %>
+            <h4>Taught Courses</h4>
+            <hr>
+            <% @user.taught_courses.each do |course| %>
+                <p><a class="basic-link" href="/courses/<%= course.id %>"><%= course.code %>: <%= course.title %></a></br><small class="course-details"><%= course.days %> <%= course.start_time.strftime("%H:%M")  %>-<%= course.end_time.strftime("%H:%M")%></small></p>
+            <% end %>
+        <% end %>    
+        <% if !@user.enrolled_courses.blank? %>
+            <h4>Enrolled Courses</h4>
+            <hr>
+            <% @user.enrolled_courses.each do |course| %>
+                <p><a class="basic-link" href="/courses/<%= course.id %>"><%= course.code %>: <%= course.title %></a></br><small class="course-details"><%= course.days %> <%= course.start_time.strftime("%H:%M")  %>-<%= course.end_time.strftime("%H:%M")%></small></p>
+            <% end %>
         <% end %>
         <h4>Recent Activity</h4>
         <hr>

@@ -1,3 +1,4 @@
+<div class="course-form">
 <%= form_for(course) do |f| %>
   <div class="mdl-card__supporting-text enable-overflow">
     
@@ -15,23 +16,25 @@
     </br>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label time-field <%= "is-invalid" if course.errors[:start_time].any? %>">
       <%= f.label :start_time, :class => 'mdl-textfield__label' %>
-      <%= f.time_field :start_time, :class => "mdl-textfield__input", :placeholder => "" %>
+      <%= f.time_field :start_time, :class => "mdl-textfield__input" %>
       <span class="mdl-textfield__error">Start time <%= course.errors[:start_time][0] %></span>
     </div>
   
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label time-field <%= "is-invalid" if course.errors[:end_time].any? %>">
       <%= f.label :end_time, :class => 'mdl-textfield__label' %>
-      <%= f.time_field :end_time, :class => "mdl-textfield__input", :placeholder => "" %>
+      <%= f.time_field :end_time, :class => "mdl-textfield__input"%>
       <span class="mdl-textfield__error">End time <%= course.errors[:end_time][0] %></span>
     </div>
     </br>
     
     <%= label_tag "Scheduled Days:" %>
     <% Date::DAYNAMES.each do |day| %>
-      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-        <input type="checkbox" name="days[]" class="mdl-checkbox__input" value="<%= day.downcase %>">
-        <span class="mdl-checkbox__label"><%= day %></span>
-      </label>
+      <% if day != "Saturday" and day != "Sunday" %>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+          <input type="checkbox" name="days[]" class="mdl-checkbox__input" value="<%= day.downcase %>">
+          <span class="mdl-checkbox__label"><%= day %></span>
+        </label>
+      <% end %>
     <% end %>
 
   </div>
@@ -41,3 +44,4 @@
   </div>
   
 <% end %>
+</div>

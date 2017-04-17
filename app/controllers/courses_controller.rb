@@ -10,7 +10,29 @@ class CoursesController < ApplicationController
   end
 
   def create
+    days = "";
+    if params[:days].any?
+      params[:days].each do |day|
+        if day == "monday"
+          days += "M"
+        end
+        if day == "tuesday"
+          days += "T"
+        end
+        if day == "Wednesday"
+          days += "W"
+        end
+        if day == "thursday"
+          days += "R"
+        end
+        if day == "friday"
+          days += "F"
+        end        
+      end
+    end
     @course = Course.new(course_params)
+    @course.days = days
+
     authorize @course
     if @course.save
       flash[:success] = "Course added."

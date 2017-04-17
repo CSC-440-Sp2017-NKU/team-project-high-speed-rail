@@ -27,6 +27,10 @@ class TopicsController < ApplicationController
     @topic.destroy
   end
   
+  def index
+    @topics = Topic.all
+  end
+  
   private 
   
     def set_topic

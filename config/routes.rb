@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/home', to: 'static_pages#home'
-  
+
   root 'static_pages#home'
 
   get    '/login',   to: 'sessions#new'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   resources :users#, except: :index
   
-  resources :topics, only: [:show, :new, :create, :destroy]
+ resources :topics, except: [:edit, :update]
   
   resources :questions do
     resources :answers, only: [:create, :update, :destroy] do
