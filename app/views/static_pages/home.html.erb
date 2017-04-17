@@ -27,9 +27,11 @@
             <%= render @recent_topics %>
           </div>
         </div>
-        <div class="mdl-card__actions mdl-card--border">
-          <%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
-        </div>
+        <% if logged_in? and current_user.permission? :topic %>
+          <div class="mdl-card__actions mdl-card--border">
+            <%= link_to 'Create New Topic', new_topic_path, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+          </div>
+        <% end %> 
       </div>
     </section>
   </div>
