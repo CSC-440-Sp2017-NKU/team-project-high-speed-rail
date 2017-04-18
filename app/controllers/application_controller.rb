@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   
-  before_action :logged_in_user, except: [:index, :show]
+  before_action :logged_in_user, except: [:index, :show, :home]
   
   private
   
