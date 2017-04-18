@@ -10,8 +10,10 @@ class CoursesController < ApplicationController
   end
 
   def create
-    days = "";
+    @course = Course.new(course_params)
+    
     if params[:days].any?
+      days = "";
       params[:days].each do |day|
         if day == "monday"
           days += "M"
@@ -29,9 +31,8 @@ class CoursesController < ApplicationController
           days += "F"
         end        
       end
+      @course.days = days
     end
-    @course = Course.new(course_params)
-    @course.days = days
 
     authorize @course
     if @course.save

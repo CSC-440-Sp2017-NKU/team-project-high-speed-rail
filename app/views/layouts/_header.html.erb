@@ -26,7 +26,7 @@
       <% if logged_in? %>
         <span class="username-display"><%= current_user.name %></span>
       <% else %>       
-      <span class="drawer-title">NKUNet</span>
+        <span class="drawer-title">NKUNet</span>
       <% end %>
     </span>
     <nav class="mdl-navigation">
@@ -40,14 +40,12 @@
         <% end %>
       <% end %> 
       
-      <div class="drawer-separator"></div>
-
       <% if logged_in? and current_user.permission? :topic %>
         <a class="mdl-navigation__link" href="<%= new_topic_path %>"><i class="material-icons">create_new_folder</i> Create New Topic</a>
       <% end %> 
       
       <% if logged_in? and current_user.permission? :user_manage %>
-        <a class="mdl-navigation__link" href="<%= new_topic_path %>"><i class="material-icons">person_add</i> Create New User</a>
+        <a class="mdl-navigation__link" href="<%= new_user_path %>"><i class="material-icons">person_add</i> Create New User</a>
       <% end %> 
       
       <% if logged_in? and current_user.permission? :course_manage %>
