@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-    before_action :set_answer, only: [:update, :destroy]
+    before_action :set_answer, only: [:update, :destroy, :edit]
     
     def create
         authorize Answer
@@ -36,6 +36,9 @@ class AnswersController < ApplicationController
         @answer.destroy
         flash[:success] = "Answer was destroyed."
         redirect_to @question
+    end
+    
+    def edit
     end
     
     private

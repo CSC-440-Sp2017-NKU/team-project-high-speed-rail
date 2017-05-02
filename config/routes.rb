@@ -15,7 +15,7 @@ Rails.application.routes.draw do
  resources :topics, except: [:edit, :update]
   
   resources :questions do
-    resources :answers, only: [:create, :update, :destroy] do
+    resources :answers, only: [:create, :update, :destroy, :edit] do
       member do
         post 'upvote' => 'ratings#upvote'
         post 'downvote' => 'ratings#downvote'
