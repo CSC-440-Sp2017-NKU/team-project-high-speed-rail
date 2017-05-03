@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     authorize @user
+    @courses = Course.order(code: :asc, title: :asc)
   end
 
   # POST /users
@@ -63,12 +64,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     authorize @user
-    
     respond_to do |format|
+
+
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
+        @courses = Course.order(code: :asc, title: :asc)
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
