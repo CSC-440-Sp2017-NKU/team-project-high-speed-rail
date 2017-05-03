@@ -29,10 +29,12 @@
           <h4>No Answers. Be the first to help!</h4>
         <% end %>
       </div>
-      <div class="mdl-card__actions mdl-card--border">
-        <span class = "mdl-button new-answer-button">Create New Answer</span>
-        <%= render 'answers/form' %>
-      </div>
+      <% if logged_in? and current_user.permission? :post %>
+        <div class="mdl-card__actions mdl-card--border">
+          <span class = "mdl-button new-answer-button">Create New Answer</span>
+          <%= render 'answers/form' %>
+        </div>
+      <% end %>
     </div>
   </section>
   
