@@ -6,7 +6,9 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+        <% if logged_in? and current_user.permission? :post %>
+          <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+        <% end %>
       </nav>
       
       <%= form_tag search_path, method: :get do %>
@@ -31,7 +33,9 @@
     </span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="<%= root_path %>"><i class="material-icons">home</i> Home</a>
-      <a class="mdl-navigation__link" href="<%= new_question_path %>"><i class="material-icons">question_answer</i> New Question</a>
+      <% if logged_in? and current_user.permission? :post %>
+        <a class="mdl-navigation__link" href="<%= new_question_path %>"><i class="material-icons">question_answer</i> New Question</a>
+      <% end %>
       <a class="mdl-navigation__link" href="<%= topics_path %>"><i class="material-icons">folder</i> Topics</a>
       
       <% if logged_in? %>

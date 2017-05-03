@@ -11,9 +11,11 @@
             <%= render @recent_questions %>
           </div>
         </div>
-        <div class="mdl-card__actions mdl-card--border">
-          <%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
-        </div>
+        <% if logged_in? and current_user.permission? :post %>
+          <div class="mdl-card__actions mdl-card--border">
+            <%= link_to 'Create New Question', new_question_path, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+          </div>
+        <% end %>
       </div>
     </section>
     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">

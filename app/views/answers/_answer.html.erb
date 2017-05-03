@@ -25,7 +25,7 @@
         <%= link_to question_answer_path(answer.question, answer), method: :delete, data: { confirm: 'Are you sure?' } do%>
           <li class="mdl-menu__item">Delete</li>
         <% end %>
-        <%= link_to edit_question_answer_path(answer.question, answer), data: { confirm: 'Are you sure?' } do%>
+        <%= link_to edit_question_answer_path(answer.question, answer), data: {} do%>
           <li class="mdl-menu__item">Edit</li>
         <% end %>
       </ul>

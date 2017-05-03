@@ -39,6 +39,7 @@ class AnswersController < ApplicationController
     end
     
     def edit
+        
     end
     
     private
