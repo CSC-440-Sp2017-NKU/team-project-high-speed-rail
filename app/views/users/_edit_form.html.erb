@@ -39,7 +39,8 @@
   </div>
 
   <div class="mdl-card__actions mdl-card--border">
-    <%= f.submit "Create User", :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
+    <%= f.submit "Update User", :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
+    <%= link_to "Cancel", user_path(@user), :class => 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
   </div>
   
 <% end %>
