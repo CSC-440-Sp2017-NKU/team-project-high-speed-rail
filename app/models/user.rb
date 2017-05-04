@@ -140,11 +140,11 @@ class User < ApplicationRecord
   end
   
   def upvote_count
-    ratings.upvotes.count
+    self.ratings.upvotes.count
   end
   
   def downvote_count
-    ratings.downvotes.count
+    self.ratings.downvotes.count
   end
   
   def overall_rating

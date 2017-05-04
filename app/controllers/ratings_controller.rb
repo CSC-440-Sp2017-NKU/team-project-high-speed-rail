@@ -4,7 +4,7 @@ class RatingsController < ApplicationController
   
   def upvote
     @vote = @answer.ratings.build(is_liked: true)
-    @vote.user = current_user
+    @vote.user = @answer.user
     
     authorize @vote
     
