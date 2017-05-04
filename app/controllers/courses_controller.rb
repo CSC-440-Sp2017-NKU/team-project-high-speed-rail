@@ -47,8 +47,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course = Course.new(course_params)
-    
+
     if params[:days].any?
       days = "";
       params[:days].each do |day|

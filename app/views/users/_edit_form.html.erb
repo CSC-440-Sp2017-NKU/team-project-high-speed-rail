@@ -1,0 +1,66 @@
+<%= form_for(user) do |f| %>
+  <div class="mdl-card__supporting-text enable-overflow">
+    
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-field <%= "is-invalid" if user.errors[:name].any? %>">
+      <%= f.label :name, :class => 'mdl-textfield__label'%>
+      <%= f.text_field :name, :class => "mdl-textfield__input"%>
+      <span class="mdl-textfield__error">Name <%= user.errors[:name][0] %></span>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-field <%= "is-invalid" if user.errors[:email].any? %>">
+      <%= f.label :email, :class => 'mdl-textfield__label' %>
+      <%= f.text_field :email, :class => "mdl-textfield__input" %>
+      <span class="mdl-textfield__error">Email <%= user.errors[:email][0] %></span>
+    </div>
+
+
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="usertype-student">
+      <input type="radio" id="usertype-student" class="mdl-radio__button" name="usertype" value="student" checked>
+      <span class="mdl-radio__label">Student</span>
+    </label>
+    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="usertype-faculty">
+      <input type="radio" id="usertype-faculty" class="mdl-radio__button" name="usertype" value="faculty">
+      <span class="mdl-radio__label">Faculty</span>
+    </label>
+    <% if current_user.permission? :admin %>
+      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="usertype-registrar">
+        <input type="radio" id="usertype-registrar" class="mdl-radio__button" name="usertype" value="registrar">
+        <span class="mdl-radio__label">Registrar</span>
+      </label>
+    <% end %>
+    <h4>Courses 
+      <button class="mdl-button mdl-js-button mdl-js-ripple-effect" type="button" id="add-new-course">
+        <i class="material-icons">add</i> Add Course
+      </button>
+    </h4>
+    <div id="course-choices">
+      <!-- Dynamic select boxes will be appended here -->
+    </div>
+  </div>
+
+  <div class="mdl-card__actions mdl-card--border">
+    <%= f.submit "Create User", :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'%>
+  </div>
+  
+<% end %>
+
+<div id="new-course-select" style="display:none;">
+  <div class="select-clear-button-group">
+    
+    <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+      <select name="courses[]" class="required mdl-selectfield__select" required>
+          <option value=""></option>
+        <% @courses.each do |course| %>
+          <option value="<%= course.id %>"><%= course.code %> <%= course.title %></option>
+        <% end %>
+      </select>
+      <label class="mdl-selectfield__label">Course</label>
+      <span class="mdl-selectfield__error">Input is not a course!</span>
+    </div>
+    
+    
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" type="button" onclick="removeChoice($(this))">
+      <i class="material-icons">clear</i>
+    </button>
+  </div>
+</div>
