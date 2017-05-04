@@ -57,7 +57,7 @@ class CoursesController < ApplicationController
         if day == "tuesday"
           days += "T"
         end
-        if day == "Wednesday"
+        if day == "wednesday"
           days += "W"
         end
         if day == "thursday"
@@ -67,7 +67,7 @@ class CoursesController < ApplicationController
           days += "F"
         end        
       end
-      @course.days = days
+      params[:course][:days] = days
     end
     authorize @course
     if @course.update(course_params)

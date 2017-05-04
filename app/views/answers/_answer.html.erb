@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="section__text answer__text mdl-cell mdl-cell--11-col-desktop mdl-cell--7-col-tablet mdl-cell--4-col-phone answer-divs">
-    <small>Posted <%= time_ago_in_words(answer.created_at) %> ago.</small>
+    <small>Posted <%= time_ago_in_words(answer.created_at) %> ago by <%= link_to answer.user.name, answer.user %>.</small>
     <div class="markdown-body"><%= parse_markdown answer.content %></div>
     <% if logged_in? and current_user.permission? :post_manage %>
       <button id="answer-menu-<%= answer.id %>" class="mdl-button mdl-js-button mdl-button--icon answer_dropdown">

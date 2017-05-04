@@ -55,6 +55,7 @@ User.create_student(name: "Mikael Soto", email: "student4@nku.edu", password: "p
                   topic: Topic.all.sample)
   
   rand(10).times do
+    user = User.all.sample
     while !user.permission?(:post)
       user = User.all.sample
     end

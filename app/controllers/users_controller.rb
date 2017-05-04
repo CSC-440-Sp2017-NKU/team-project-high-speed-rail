@@ -66,8 +66,23 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
 
-
       if @user.update(user_params)
+        
+        if params[:courses].any?
+          @user.enrolled_courses.delete_all
+          @user.taught_courses.delete_all
+        end
+        
+        if @user.permission? :student
+          params[:courses].each do |course_id|
+            @user.enrolled_courses << Course.find(course_id)
+          end
+        elsif @user.permission? :faculty
+          params[:courses].each do |course_id|
+            @user.taught_courses << Course.find(course_id)
+          end
+        end
+        
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -91,7 +106,7 @@ class UsersController < ApplicationController
   
   def import
     User.import params[:file]
-    redirect_to new_users_path
+    redirect_to new_user_path, notice: 'Users imported.'
   end
 
   private
