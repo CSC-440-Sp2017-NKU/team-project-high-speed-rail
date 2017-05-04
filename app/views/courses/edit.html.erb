@@ -1,2 +1,9 @@
-<h1>Courses#edit</h1>
-<p>Find me in app/views/courses/edit.html.erb</p>
+<div class="mdl-grid">
+    <div class="mdl-cell--3-col mdl-cell--hide-tablet"></div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--4dp mdl-card enable-overflow">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Edit Course</h2>
+        </div>
+        <%= render 'edit_form', course: @course %>
+    </div>
+</div>

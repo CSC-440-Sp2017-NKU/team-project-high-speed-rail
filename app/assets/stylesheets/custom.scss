@@ -431,3 +431,23 @@ input:focus::-webkit-datetime-edit{ color: #000; }
 .time-field{
     width:120px;
 }
+.answer_dropdown{
+    position: absolute;
+    right: 0px;
+    top: -10px;
+}
+.answer-section{
+    overflow: visible;
+}
+
+.mdl-menu__container{
+    right: 8px !important;
+}
+
+.answer-divs{
+    position: relative;
+}
+
+.mdl-card__supporting-text{
+    overflow: visible;
+}

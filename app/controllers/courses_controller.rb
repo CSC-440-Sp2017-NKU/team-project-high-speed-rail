@@ -44,10 +44,31 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    authorize @course
   end
 
   def update
+
+    if params[:days].any?
+      days = "";
+      params[:days].each do |day|
+        if day == "monday"
+          days += "M"
+        end
+        if day == "tuesday"
+          days += "T"
+        end
+        if day == "wednesday"
+          days += "W"
+        end
+        if day == "thursday"
+          days += "R"
+        end
+        if day == "friday"
+          days += "F"
+        end        
+      end
+      params[:course][:days] = days
+    end
     authorize @course
     if @course.update(course_params)
       flash[:success] = "Course updated."

@@ -7,16 +7,18 @@
           <h4><%= @question.title %></h4>
           <div class="markdown-body"><%= parse_markdown @question.content %></div>
       </div>
-      <div class="mdl-card__actions mdl-card--border">
-          <%= link_to 'Edit', edit_question_path(@question), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
-          <%= link_to 'Delete', @question, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
+      <% if logged_in? and current_user.permission? :post_manage %>
+        <div class="mdl-card__actions mdl-card--border">
+            <%= link_to 'Edit', edit_question_path(@question), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
+            <%= link_to 'Delete', @question, :class => 'mdl-button mdl-js-button mdl-js-ripple-effect', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
     </div>
   </section>
   
   <!-- Begin Answers Section -->
   <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp question-section mdl-cell--10-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
-    <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone">
+    <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone answer-section">
       <div class="mdl-card__supporting-text">
         <% if @question.answers.any? %>
           <h4>Answers (<%= @question.answers.count %>)</h4>
@@ -27,10 +29,12 @@
           <h4>No Answers. Be the first to help!</h4>
         <% end %>
       </div>
-      <div class="mdl-card__actions mdl-card--border">
-        <span class = "mdl-button new-answer-button">Create New Answer</span>
-        <%= render 'answers/form' %>
-      </div>
+      <% if logged_in? and current_user.permission? :post %>
+        <div class="mdl-card__actions mdl-card--border">
+          <span class = "mdl-button new-answer-button">Create New Answer</span>
+          <%= render 'answers/form' %>
+        </div>
+      <% end %>
     </div>
   </section>
   

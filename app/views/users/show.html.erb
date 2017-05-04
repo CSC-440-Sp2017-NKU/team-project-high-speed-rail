@@ -37,6 +37,11 @@
             <% end %>
             </br><small class="post-details">Posted <%= time_ago_in_words(results.created_at) %> ago</small></p >
         <% end %>
+        <% if logged_in? and current_user.permission? :user_manage %>
+          <div class="mdl-card__actions mdl-card--border">
+            <%= link_to "Edit", edit_user_path(@user), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
+          </div>
+        <% end %>
     </div>
 
   </div>

@@ -6,19 +6,21 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+        <% if logged_in? and current_user.permission? :post %>
+          <a class="mdl-navigation__link" href="<%= new_question_path %>">New Question</a>
+        <% end %>
       </nav>
-      <form action="#" class="header-search">
+      
+      <%= form_tag search_path, method: :get do %>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-          <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="search_field">
             <i class="material-icons">search</i>
           </label>
           <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="text" id="sample6">
-            <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+            <input class="mdl-textfield__input" type="text" id="search_field" name="search">
           </div>
         </div>
-      </form>
+      <% end %>
     </div>
   </header>
   <div class="mdl-layout__drawer drawer">
@@ -31,7 +33,9 @@
     </span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="<%= root_path %>"><i class="material-icons">home</i> Home</a>
-      <a class="mdl-navigation__link" href="<%= new_question_path %>"><i class="material-icons">question_answer</i> New Question</a>
+      <% if logged_in? and current_user.permission? :post %>
+        <a class="mdl-navigation__link" href="<%= new_question_path %>"><i class="material-icons">question_answer</i> New Question</a>
+      <% end %>
       <a class="mdl-navigation__link" href="<%= topics_path %>"><i class="material-icons">folder</i> Topics</a>
       
       <% if logged_in? %>

@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     authorize @user
+    @courses = Course.order(code: :asc, title: :asc)
   end
 
   # POST /users
@@ -63,12 +64,29 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     authorize @user
-    
     respond_to do |format|
+
       if @user.update(user_params)
+        
+        if params[:courses].any?
+          @user.enrolled_courses.delete_all
+          @user.taught_courses.delete_all
+        end
+        
+        if @user.permission? :student
+          params[:courses].each do |course_id|
+            @user.enrolled_courses << Course.find(course_id)
+          end
+        elsif @user.permission? :faculty
+          params[:courses].each do |course_id|
+            @user.taught_courses << Course.find(course_id)
+          end
+        end
+        
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
+        @courses = Course.order(code: :asc, title: :asc)
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -84,6 +102,11 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def import
+    User.import params[:file]
+    redirect_to new_user_path, notice: 'Users imported.'
   end
 
   private
