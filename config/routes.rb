@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
-  resources :users#, except: :index
+  resources :users
+  post   '/users/import', to: 'users#import'
   
- resources :topics, except: [:edit, :update]
+  resources :topics, except: [:edit, :update]
   
   resources :questions do
     resources :answers, only: [:create, :update, :destroy, :edit] do
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
   end
   
   resources :courses, except: :index
+  
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  require 'csv'
+  
   attr_accessor :remember_token
   
   before_save { self.email = email.downcase }
@@ -110,6 +112,16 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
   
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      user = User.create_student(name: row["name"], email: row["email"],
+                  password: row["password"], password_confirmation: row["password"])
+      if (user.save)
+        User.add_courses_to_user(user, row["courses"])
+      end
+    end
+  end
+  
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token
@@ -138,6 +150,16 @@ class User < ApplicationRecord
   def overall_rating
     upvote_count - downvote_count
   end
+  
+  private
+    
+    def self.add_courses_to_user(user, courses)
+      courses.split(',').each do |course_code|
+        if c = Course.find_by(code: course_code)
+          user.enrolled_courses << c
+        end
+      end
+    end
   
 end
 
